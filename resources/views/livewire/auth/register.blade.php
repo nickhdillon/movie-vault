@@ -31,7 +31,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
 
         Auth::login($user);
 
-        $this->redirect(route('dashboard', absolute: false), navigate: true);
+        $this->redirectIntended(navigate: true);
     }
 }; ?>
 
@@ -62,8 +62,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
                 name="password"
                 required
                 autocomplete="new-password"
-                placeholder="Password"
-            />
+                placeholder="Password" />
         </div>
 
         <!-- Confirm Password -->
@@ -76,12 +75,11 @@ new #[Layout('components.layouts.auth')] class extends Component {
                 name="password_confirmation"
                 required
                 autocomplete="new-password"
-                placeholder="Confirm password"
-            />
+                placeholder="Confirm password" />
         </div>
 
         <div class="flex items-center justify-end">
-            <flux:button type="submit" variant="primary" class="w-full">
+            <flux:button type="submit" variant="primary" class="w-full cursor-pointer">
                 {{ __('Create account') }}
             </flux:button>
         </div>

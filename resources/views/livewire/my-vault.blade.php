@@ -42,7 +42,7 @@
                 @forelse ($vault_records as $vault)
                     <div class="rounded-lg shadow-xs border dark:border-slate-700 border-slate-200"
                         wire:key='{{ $vault->id }}'>
-                        <a wire:navigate class="w-full">
+                        <a href="{{ route('details', $vault->id) }}" wire:navigate class="w-full">
                             <img class="h-[300px] w-full rounded-t-lg object-cover"
                                 src="{{ 'https://image.tmdb.org/t/p/w500/' . $vault->poster_path ?? $vault->backdrop_path . '?include_adult=false&language=en-US&page=1' }}"
                                 alt="{{ $vault->original_title }}" />
@@ -105,7 +105,7 @@
 
                             <div class="flex items-center justify-between -mb-2 w-full">
                                 <a class="text-sm font-medium text-indigo-500 duration-200 ease-in-out hover:text-indigo-600 dark:hover:text-indigo-400"
-                                    wire:navigate>
+                                    href="{{ route('details', $vault->id) }}" wire:navigate>
                                     View all details &rarr;
                                 </a>
 

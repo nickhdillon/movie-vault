@@ -137,12 +137,12 @@ class Explore extends Component
 
             $page = $wishlist ? 'wishlist' : 'vault';
 
-            // $this->dispatch('show-toast', [
-            //     'status' => 'success',
-            //     'message' => "Successfully added {$media} to your {$page}. 
-            //         <a href='" . route('movie-vault.details', $user_vaults->latest()->first()->id) . "' class='text-sm font-medium text-indigo-500 duration-200 ease-in-out hover:text-indigo-600 dark:hover:text-indigo-400'>View details &rarr;</a>",
-            //     'timeout' => 10000
-            // ]);
+            $this->dispatch('show-toast', [
+                'status' => 'success',
+                'message' => "Successfully added {$media} to your {$page}. 
+                    <a href='" . route('details', $user_vaults->latest()->first()->id) . "' class='text-sm font-medium text-indigo-500 duration-200 ease-in-out hover:text-indigo-600 dark:hover:text-indigo-400'>View details &rarr;</a>",
+                'timeout' => 10000
+            ]);
         }
     }
 

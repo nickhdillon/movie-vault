@@ -10,7 +10,6 @@ use function Pest\Laravel\actingAs;
 use Illuminate\Support\Facades\URL;
 use function Pest\Livewire\livewire;
 
-
 beforeEach(function () {
     actingAs(
         User::factory()

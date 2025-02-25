@@ -44,7 +44,7 @@
                                     </path>
                             @endswitch
                         </svg>
-                        <div class="font-medium">{{ $toast['message'] }}</div>
+                        <div class="font-medium">{!! $toast['message'] !!}</div>
                     </div>
 
                     <flux:button icon="x-mark" variant="subtle" x-on:click="open = false"

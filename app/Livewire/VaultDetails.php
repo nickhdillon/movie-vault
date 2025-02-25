@@ -25,7 +25,6 @@ class VaultDetails extends Component
             'message' => "Successfully added {$vault->title} to your vault"
         ]);
 
-
         return redirect(route('my-vault'));
     }
 
@@ -47,7 +46,7 @@ class VaultDetails extends Component
 
         $route = $vault->on_wishlist ? 'wishlist' : 'my-vault';
 
-        $this->dispatch('show-toast', [
+        session()->flash('toast', [
             'status' => 'success',
             'message' => "Successfully removed {$vault->title} from your {$page}"
         ]);

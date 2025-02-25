@@ -4,23 +4,21 @@
     <div class="flex flex-col justify-between sm:flex-row sm:items-center">
         <div class="flex flex-row items-center space-x-1.5">
             <flux:heading size="xl" level="1">
-                My Vault
+                My Wishlist
             </flux:heading>
 
             <flux:heading size="xl" level="1">
-                (Total: {{ $vault_records->total() }})
+                (Total: {{ $wishlist_records->total() }})
             </flux:heading>
         </div>
 
         <div class="flex items-center mt-2 space-x-2 sm:mt-0">
-            <flux:button href="{{ route('wishlist') }}" variant="primary" size="sm" wire:navigate
+            <flux:button variant="primary" icon="film" size="sm" href="{{ route('my-vault') }}" wire:navigate
                 class="w-full sm:w-auto">
-                <flux:icon icon="heart" variant="outline" class="w-4 h-4" />
-
-                Wishlist
+                Vault
             </flux:button>
 
-            <flux:button variant="primary" size="sm" icon="plus" href="{{ route('explore') }}" wire:navigate
+            <flux:button variant="primary" icon="plus" size="sm" href="{{ route('explore') }}" wire:navigate
                 class="w-full sm:w-auto">
                 Add to vault
             </flux:button>
@@ -38,7 +36,7 @@
         <div class="rounded-t-lg rounded-b-lg bg-white mt-4 border-t dark:bg-slate-800/50 px-4 dark:border-slate-700 border-slate-200"
             wire:loading.remove wire:target='search,type,selected_ratings,selected_genres,sort_direction'>
             <div class="grid grid-cols-1 gap-4 pt-4 sm:grid-cols-2 lg:grid-cols-3">
-                @forelse ($vault_records as $vault)
+                @forelse ($wishlist_records as $vault)
                     <div class="rounded-lg shadow-xs border dark:border-slate-700 border-slate-200"
                         wire:key='{{ $vault->id }}'>
                         <a href="{{ route('details', $vault->id) }}" wire:navigate class="w-full">
@@ -109,16 +107,16 @@
                                 </a>
 
                                 <div class="flex items-center !-space-x-1 -mr-2">
-                                    <flux:modal.trigger name="{{ $vault->id }}-wishlist">
+                                    <flux:modal.trigger name="{{ $vault->id }}-vault">
                                         <flux:button variant="subtle" class="w-3! h-8!">
                                             <flux:icon.plus class="w-5! h-5! text-slate-600! dark:text-slate-200!" />
                                         </flux:button>
                                     </flux:modal.trigger>
 
-                                    <flux:modal name="{{ $vault->id }}-wishlist" class="w-90 sm:w-120!"
-                                        x-on:close-modal.window="$flux.modal('{{ $vault->id }}-wishlist').close()">
+                                    <flux:modal name="{{ $vault->id }}-vault" class="w-90 sm:w-120!"
+                                        x-on:close-modal.window="$flux.modal('{{ $vault->id }}-vault').close()">
                                         <flux:heading size="lg">
-                                            Add to wishlist
+                                            Add to vault
                                         </flux:heading>
 
                                         <flux:subheading>
@@ -128,7 +126,7 @@
                                                 '{{ $vault->title }}'
                                             </span>
 
-                                            to your wishlist?
+                                            to your vault?
                                         </flux:subheading>
 
                                         <div class="flex mt-6 -mb-1">
@@ -141,7 +139,7 @@
                                                     </flux:button>
                                                 </flux:modal.close>
 
-                                                <form wire:submit="addToWishlist({{ $vault->id }})">
+                                                <form wire:submit="addToVault({{ $vault->id }})">
                                                     <flux:button size="sm" type="submit" variant="primary">
                                                         Confirm
                                                     </flux:button>
@@ -159,7 +157,7 @@
                                     <flux:modal name="{{ $vault->id }}-delete" class="w-90 sm:w-120!"
                                         x-on:close-modal.window="$flux.modal('{{ $vault->id }}-delete').close()">
                                         <flux:heading size="lg">
-                                            Remove from vault
+                                            Remove from wishlist
                                         </flux:heading>
 
                                         <flux:subheading>
@@ -169,7 +167,7 @@
                                                 '{{ $vault->title }}'
                                             </span>
 
-                                            from your vault?
+                                            from your wishlist?
                                         </flux:subheading>
 
                                         <div class="flex mt-6 -mb-1">
@@ -208,8 +206,8 @@
                 @endforelse
             </div>
 
-            <div class="pt-4 @if (count($vault_records) > 9) pb-4 @endif">
-                {{ $vault_records->links() }}
+            <div class="pt-4 @if (count($wishlist_records) > 9) pb-4 @endif">
+                {{ $wishlist_records->links() }}
             </div>
         </div>
 

@@ -13,7 +13,7 @@ use App\Services\MovieVaultService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
 
-class MyVault extends Component
+class Wishlist extends Component
 {
     use WithPagination;
 
@@ -42,25 +42,23 @@ class MyVault extends Component
         $this->reset(['type', 'selected_ratings', 'selected_genres']);
     }
 
-    public function addToWishlist(Vault $vault): void
+    public function addToVault(Vault $vault): void
     {
-        $vault?->update(['on_wishlist' => true]);
-
-        $name = $vault->title ?? $vault->name;
+        $vault?->update(['on_wishlist' => false]);
 
         $this->dispatch('show-toast', [
             'status' => 'success',
-            'message' => "Successfully added {$name} to your wishlist"
+            'message' => "Successfully added {$vault->title} to your vault"
         ]);
 
-        Flux::modal("$vault->id-wishlist")->close();
+        Flux::modal("$vault->id-vault")->close();
     }
 
     public function delete(Vault $vault): void
     {
         $this->dispatch('show-toast', [
             'status' => 'success',
-            'message' => "Successfully removed {$vault->title} from your vault"
+            'message' => "Successfully removed {$vault->title} from your wishlist"
         ]);
 
         Flux::modal("$vault->id-delete")->close();
@@ -70,15 +68,15 @@ class MyVault extends Component
 
     public function render(): View
     {
-        $this->ratings = MovieVaultService::getRatings();
+        $this->ratings = MovieVaultService::getRatings(on_wishlist: true);
 
-        $this->genres = MovieVaultService::getGenres();
+        $this->genres = MovieVaultService::getGenres(on_wishlist: true);
 
-        return view('livewire.my-vault', [
-            'vault_records' => auth()
+        return view('livewire.wishlist', [
+            'wishlist_records' => auth()
                 ->user()
                 ->vaults()
-                ->whereOnWishlist(false)
+                ->whereOnWishlist(true)
                 ->when(strlen($this->search) >= 1, function (Builder $query): void {
                     $query->where(function (Builder $query): void {
                         $query->whereLike('title', "%$this->search%")

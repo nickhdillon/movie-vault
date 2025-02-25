@@ -35,4 +35,8 @@ return [
         ],
     ],
 
+    'movie-api' => [
+        'token' => env('MOVIE_API_TOKEN'),
+    ],
+
 ];

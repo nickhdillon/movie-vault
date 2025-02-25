@@ -35,7 +35,7 @@
 
             <div class="flex items-center space-x-1">
                 <button x-cloak x-show="totalFilters() > 1"
-                    class="px-2 text-sm font-medium text-slate-800 dark:text-slate-200 duration-200 ease-in-out rounded hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700"
+                    class="px-2 text-sm font-medium text-slate-800 dark:text-slate-200 duration-200 ease-in-out rounded hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 cursor-pointer"
                     x-on:click="$dispatch('clear-filters')">
                     Clear all
                 </button>
@@ -70,7 +70,7 @@
 
                     <div class="flex items-center justify-between">
                         <button x-cloak x-show="$wire.type"
-                            class="px-2 text-sm font-medium duration-200 ease-in-out rounded hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700"
+                            class="px-2 text-sm font-medium duration-200 ease-in-out rounded hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 cursor-pointer"
                             x-on:click="$wire.set('type', '')">
                             Clear
                         </button>
@@ -98,7 +98,7 @@
 
                     <div class="flex items-center justify-between">
                         <button x-cloak x-show="$wire.selected_ratings.length > 0"
-                            class="px-2 text-sm font-medium duration-200 ease-in-out rounded hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700"
+                            class="px-2 text-sm font-medium duration-200 ease-in-out rounded hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 cursor-pointer"
                             x-on:click="$wire.set('selected_ratings', [])">
                             Clear
                         </button>
@@ -109,9 +109,11 @@
                     </div>
                 </div>
 
-                <div x-collapse x-show="showRatings" class="pt-2 border-t border-slate-300 dark:border-slate-700">
+                <div x-collapse x-show="showRatings"
+                    class="pt-2 border-t space-y-2 border-slate-300 dark:border-slate-700">
                     @foreach ($ratings as $rating)
-                        <flux:checkbox wire:model.live="selected_ratings" label="{{ $rating }}" />
+                        <flux:checkbox wire:model.live="selected_ratings" label="{{ $rating }}"
+                            value="{{ $rating }}" />
                     @endforeach
                 </div>
             </div>
@@ -124,7 +126,7 @@
 
                     <div class="flex items-center justify-between">
                         <button x-cloak x-show="$wire.selected_genres.length > 0"
-                            class="px-2 text-sm font-medium duration-200 ease-in-out rounded hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700"
+                            class="px-2 text-sm font-medium duration-200 ease-in-out rounded hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 cursor-pointer"
                             x-on:click="$wire.set('selected_genres', [])">
                             Clear
                         </button>
@@ -135,9 +137,11 @@
                     </div>
                 </div>
 
-                <div x-collapse x-show="showGenres" class="pt-2 border-t border-slate-300 dark:border-slate-700">
+                <div x-collapse x-show="showGenres"
+                    class="pt-2 border-t space-y-2 border-slate-300 dark:border-slate-700">
                     @foreach ($genres as $genre)
-                        <flux:checkbox wire:model.live="selected_genres" label="{{ $genre }}" />
+                        <flux:checkbox wire:model.live="selected_genres" label="{{ $genre }}"
+                            value="{{ $genre }}" />
                     @endforeach
                 </div>
             </div>

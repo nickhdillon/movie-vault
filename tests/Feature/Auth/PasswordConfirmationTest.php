@@ -27,12 +27,12 @@ class PasswordConfirmationTest extends TestCase
         $this->actingAs($user);
 
         $response = Volt::test('auth.confirm-password')
-            ->set('password', 'password')
+            ->set('password', 'Password')
             ->call('confirmPassword');
 
         $response
             ->assertHasNoErrors()
-            ->assertRedirect(route('dashboard', absolute: false));
+            ->assertRedirect(route('my-vault', absolute: false));
     }
 
     public function test_password_is_not_confirmed_with_invalid_password(): void

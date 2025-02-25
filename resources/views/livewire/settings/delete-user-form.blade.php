@@ -29,31 +29,37 @@ new class extends Component {
     </div>
 
     <flux:modal.trigger name="confirm-user-deletion">
-        <flux:button variant="danger" x-data="" x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')">
+        <flux:button variant="danger" size="sm" x-data
+            x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')">
             {{ __('Delete Account') }}
         </flux:button>
     </flux:modal.trigger>
 
-    <flux:modal name="confirm-user-deletion" :show="$errors->isNotEmpty()" focusable class="max-w-lg space-y-6">
+    <flux:modal name="confirm-user-deletion" show="{{ $errors->isNotEmpty() }}" focusable class="max-w-lg">
         <form wire:submit="deleteUser">
-            <h2 class="text-lg font-medium text-gray-900">
+            <h2 class="text-lg font-medium text-slate-900 dark:text-slate-200">
                 {{ __('Are you sure you want to delete your account?') }}
             </h2>
 
-            <p class="mt-1 text-sm text-gray-600">
+            <p class="mt-1 text-sm text-slate-600 dark:text-slate-400">
                 {{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.') }}
             </p>
 
             <div class="mt-6">
-                <flux:input wire:model="password" id="password" label="{{ __('Password') }}" type="password" name="password" />
+                <flux:input wire:model="password" id="password" label="{{ __('Password') }}" type="password"
+                    name="password" />
             </div>
 
             <div class="mt-6 flex justify-end space-x-2">
                 <flux:modal.close>
-                    <flux:button variant="filled">{{ __('Cancel') }}</flux:button>
+                    <flux:button variant="filled" size="sm">
+                        {{ __('Cancel') }}
+                    </flux:button>
                 </flux:modal.close>
 
-                <flux:button variant="danger" type="submit">{{ __('Delete Account') }}</flux:button>
+                <flux:button variant="danger" type="submit" size="sm">
+                    {{ __('Delete Account') }}
+                </flux:button>
             </div>
         </form>
     </flux:modal>

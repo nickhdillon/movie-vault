@@ -49,8 +49,8 @@ new class extends Component {
                 type="password"
                 name="current_password"
                 required
-                autocomplete="current-password"
-            />
+                autocomplete="current-password" />
+
             <flux:input
                 wire:model="password"
                 id="update_password_password"
@@ -58,8 +58,8 @@ new class extends Component {
                 type="password"
                 name="password"
                 required
-                autocomplete="new-password"
-            />
+                autocomplete="new-password" />
+
             <flux:input
                 wire:model="password_confirmation"
                 id="update_password_password_confirmation"
@@ -67,12 +67,13 @@ new class extends Component {
                 type="password"
                 name="password_confirmation"
                 required
-                autocomplete="new-password"
-            />
+                autocomplete="new-password" />
 
             <div class="flex items-center gap-4">
                 <div class="flex items-center justify-end">
-                    <flux:button variant="primary" type="submit" class="w-full">{{ __('Save') }}</flux:button>
+                    <flux:button variant="primary" size="sm" type="submit" class="w-full">
+                        {{ __('Save') }}
+                    </flux:button>
                 </div>
 
                 <x-action-message class="me-3" on="password-updated">

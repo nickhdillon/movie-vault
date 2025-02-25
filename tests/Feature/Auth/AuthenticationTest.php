@@ -24,7 +24,7 @@ class AuthenticationTest extends TestCase
 
         $response = LivewireVolt::test('auth.login')
             ->set('email', $user->email)
-            ->set('password', 'password')
+            ->set('password', 'Password')
             ->call('login');
 
         $response

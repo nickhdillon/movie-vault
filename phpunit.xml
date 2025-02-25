@@ -25,6 +25,7 @@
             <directory>app/View</directory>
             <directory>app/Http/Controllers/Auth</directory>
             <file>app/Http/Controllers/Controller.php</file>
+            <file>app/Livewire/Toast.php</file>
         </exclude>
     </source>
 

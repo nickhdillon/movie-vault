@@ -1,6 +1,6 @@
 @use('App\Services\MovieVaultService', 'MovieVaultService')
 
-<div class="w-full mx-auto overflow-y-hidden max-w-7xl">
+<div class="w-full mx-auto overflow-y-hidden max-w-7xl" x-data="{ view: 'list' }">
     <div class="flex flex-col justify-between sm:flex-row sm:items-center">
         <div class="flex flex-row items-center space-x-1.5">
             <flux:heading size="xl" level="1">
@@ -27,7 +27,12 @@
         </div>
     </div>
 
-    <div class="rounded-xl bg-slate-50 dark:bg-slate-900 p-1 shadow-inner mt-4">
+    <flux:tabs variant="segmented" size="sm" class="mt-4">
+        <flux:tab icon="squares-2x2" x-model="view">Grid</flux:tab>
+        <flux:tab icon="list-bullet" x-model="view">Table</flux:tab>
+    </flux:tabs>
+
+    <div x-show="view === 'list'" class="rounded-xl bg-slate-50 dark:bg-slate-900 p-1 shadow-inner mt-4">
         <div class="flex items-center mt-4 px-4 space-x-2">
             <flux:input icon="magnifying-glass" placeholder="Search..." clearable
                 wire:model.live.debounce.300ms='search' />

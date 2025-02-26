@@ -5,9 +5,8 @@
     @include('partials.head')
 </head>
 
-<body class="h-screen overflow-x-hidden! bg-white dark:bg-slate-800">
-    <flux:header container
-        class="border-b overflow-x-hidden! border-slate-200 bg-slate-50 dark:border-slate-700 dark:bg-slate-900">
+<body class="h-screen bg-white dark:bg-slate-800">
+    <flux:header container class="border-b border-slate-200 bg-slate-50 dark:border-slate-700 dark:bg-slate-900">
         <a href="{{ route('my-vault') }}" wire:navigate class="flex items-center space-x-2">
             <x-app-logo class="size-8" href="#"></x-app-logo>
         </a>

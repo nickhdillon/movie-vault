@@ -1,12 +1,12 @@
 # 🎬 Movie Vault
 
-Movie Vault is a fun and easy way to track your movie and TV show collection! Add titles to your personal vault (what you own) and keep a wishlist for future additions.
+A fun and easy way to track your movie and TV show collection! Add titles to your personal vault (what you own) and keep a wishlist for future additions.
 
 ## Features
 
 Explore Movies & TV Shows: Discover new favorites.
 
-Your Vault: Keep track of what you own.
+Vault: Keep track of what you own.
 
 Wishlist: Save movies and shows you want to watch or buy.
 
@@ -38,8 +38,8 @@ DB_PASSWORD=
 Now, open the project in your browser (Typically http://movie-vault.test) and use the following credentials to log in:
 
 ```
-Email: admin@test.com
-Password: Password
+Email: admin@example.com
+Password: password
 ```
 
 ## Testing

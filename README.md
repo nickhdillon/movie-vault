@@ -1,12 +1,12 @@
 # 🎬 Movie Vault
 
-Movie Vault is a fun and easy way to track your movie and TV show collection! Add titles to your personal vault (what you own) and keep a wishlist for future additions.
+A fun and easy way to track your movie and TV show collection! Add titles to your personal vault (what you own) and keep a wishlist for future additions.
 
 ## Features
 
 Explore Movies & TV Shows: Discover new favorites.
 
-Your Vault: Keep track of what you own.
+Vault: Keep track of what you own.
 
 Wishlist: Save movies and shows you want to watch or buy.
 
@@ -25,21 +25,17 @@ npm install
 npm run dev
 ```
 
-Make sure your .env file includes:
+Create an account and API key on [TMDB.com](https://developer.themoviedb.org/docs/getting-started).
 
-```
-MOVIE_API_TOKEN=your_tmdb_api_key (https://developer.themoviedb.org/docs/getting-started)
-DB_CONNECTION=mysql
-DB_DATABASE=movie_vault
-DB_USERNAME=root
-DB_PASSWORD=
-```
+Add your TMDB API key to your .env file:
+
+`MOVIE_API_TOKEN=your_tmdb_api_key`
 
 Now, open the project in your browser (Typically http://movie-vault.test) and use the following credentials to log in:
 
 ```
-Email: admin@test.com
-Password: Password
+Email: admin@example.com
+Password: password
 ```
 
 ## Testing

@@ -25,15 +25,11 @@ npm install
 npm run dev
 ```
 
-Make sure your .env file includes:
+Create an account and API key on [TMDB.com](https://developer.themoviedb.org/docs/getting-started).
 
-```
-MOVIE_API_TOKEN=your_tmdb_api_key (https://developer.themoviedb.org/docs/getting-started)
-DB_CONNECTION=mysql
-DB_DATABASE=movie_vault
-DB_USERNAME=root
-DB_PASSWORD=
-```
+Add your TMDB API key to your .env file:
+
+`MOVIE_API_TOKEN=your_tmdb_api_key`
 
 Now, open the project in your browser (Typically http://movie-vault.test) and use the following credentials to log in:
 

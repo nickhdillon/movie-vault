@@ -27,7 +27,7 @@ class PasswordConfirmationTest extends TestCase
         $this->actingAs($user);
 
         $response = Volt::test('auth.confirm-password')
-            ->set('password', 'Password')
+            ->set('password', 'password')
             ->call('confirmPassword');
 
         $response

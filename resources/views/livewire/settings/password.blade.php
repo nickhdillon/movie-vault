@@ -49,7 +49,8 @@ new class extends Component {
                 type="password"
                 name="current_password"
                 required
-                autocomplete="current-password" />
+                autocomplete="current-password"
+                viewable />
 
             <flux:input
                 wire:model="password"
@@ -58,7 +59,8 @@ new class extends Component {
                 type="password"
                 name="password"
                 required
-                autocomplete="new-password" />
+                autocomplete="new-password"
+                viewable />
 
             <flux:input
                 wire:model="password_confirmation"
@@ -67,7 +69,8 @@ new class extends Component {
                 type="password"
                 name="password_confirmation"
                 required
-                autocomplete="new-password" />
+                autocomplete="new-password"
+                viewable />
 
             <div class="flex items-center gap-4">
                 <div class="flex items-center justify-end">

@@ -57,14 +57,14 @@ new #[Layout('components.layouts.auth')] class extends Component {
         <!-- Password -->
         <div class="grid gap-2">
             <flux:input wire:model="password" id="password" label="{{ __('Password') }}" type="password"
-                name="password" required autocomplete="new-password" placeholder="Password" />
+                name="password" required autocomplete="new-password" placeholder="Password" viewable />
         </div>
 
         <!-- Confirm Password -->
         <div class="grid gap-2">
             <flux:input wire:model="password_confirmation" id="password_confirmation"
                 label="{{ __('Confirm password') }}" type="password" name="password_confirmation" required
-                autocomplete="new-password" placeholder="Confirm password" />
+                autocomplete="new-password" placeholder="Confirm password" viewable />
         </div>
 
         <div class="flex items-center justify-end">

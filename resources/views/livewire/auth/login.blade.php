@@ -86,7 +86,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
         <!-- Password -->
         <div class="relative">
             <flux:input wire:model="password" label="{{ __('Password') }}" type="password" name="password" required
-                autocomplete="current-password" placeholder="Password" />
+                autocomplete="current-password" placeholder="Password" viewable />
 
             @if (Route::has('password.request'))
             <x-text-link class="absolute right-0 top-0" href="{{ route('password.request') }}">

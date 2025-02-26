@@ -11,14 +11,13 @@
         </flux:button>
     </div>
 
-    <div class="rounded-lg border dark:bg-slate-900 border-slate-200 dark:border-slate-700 mt-4 bg-slate-50">
+    <div class="rounded-xl bg-slate-50 dark:bg-slate-900 p-1 shadow-inner mt-4">
         <div class="mt-4 px-4">
             <flux:input icon="magnifying-glass" placeholder="Search..." clearable
                 wire:model.live.debounce.300ms='search' />
         </div>
 
-        <div
-            class="rounded-t-lg rounded-b-lg bg-white dark:bg-slate-800/50 px-4 mt-4 border-t dark:border-slate-700 border-slate-200">
+        <div class="rounded-lg rounded-b-lg bg-white dark:bg-slate-800/50 mt-5 shadow-xs-with-border px-3.5 m-0.5">
             <div class="grid grid-cols-1 gap-4 py-4 sm:grid-cols-2 lg:grid-cols-3">
                 @forelse ($this->searchResults as $media)
                     @isset($media['original_language'])
@@ -102,11 +101,11 @@
                     @endisset
                 @empty
                     <div class="col-span-3 mx-auto text-center">
-                        <h1 class="text-lg font-semibold text-slate-500" wire:loading.remove>
+                        <h1 class="text-lg font-medium text-slate-500" wire:loading.remove>
                             Search for movies or TV shows...
                         </h1>
 
-                        <div class="flex mt-1 justify-center" wire:loading wire:target='search'>
+                        <div class="flex text-center justify-center" wire:loading.flex wire:target='search'>
                             <x-large-spinner />
                         </div>
                     </div>

@@ -22,14 +22,14 @@
     </div>
 
     <div
-        class="flex flex-col w-full mt-2 overflow-hidden bg-white border rounded-lg sm:mt-4 md:flex-row border-slate-200 dark:border-slate-700 dark:bg-slate-900/50 text-slate-800 dark:text-slate-100">
+        class="flex flex-col p-[5.3px] w-full mt-2 overflow-hidden bg-slate-50/50 rounded-xl sm:mt-4 md:flex-row dark:bg-slate-900/50 text-slate-800 dark:text-slate-100 shadow-inner">
         <div class="relative w-full md:w-96 h-96 md:h-auto">
-            <img class="absolute inset-0 object-cover w-full h-full"
+            <img class="absolute shadow-xs-with-border rounded-lg inset-0 object-cover w-full h-full"
                 src="{{ 'https://image.tmdb.org/t/p/w500/' . $vault->poster_path ?? $vault->backdrop_path . '?include_adult=false&language=en-US&page=1' }}"
                 alt="{{ $vault->title }}" />
         </div>
 
-        <div class="relative flex flex-col justify-between w-full p-4 -mb-3! space-y-3">
+        <div class="relative flex flex-col m-1 justify-between w-full p-4 -mb-3! space-y-3">
             <p>
                 <span class="font-semibold">
                     Title:
@@ -119,11 +119,10 @@
                 {{ Str::replace(',', ', ', $vault->actors) ?: 'No actors found' }}
             </p>
 
-            <div class="flex items-center sm:bottom-2 sm:right-0 sm:p-4 sm:absolute sm:pt-0 -ml-2">
+            <div class="flex items-center sm:bottom-2 sm:-right-3 sm:p-4 sm:absolute sm:pt-0 -ml-2">
                 <flux:modal.trigger name="add-to-{{ $vault->id }}">
-                    <flux:button variant="subtle" class="w-3! h-8!">
-                        <flux:icon.plus class="w-5! h-5! text-slate-600! dark:text-slate-200!" />
-                    </flux:button>
+                    <flux:button variant="subtle" icon="plus"
+                        class="h-6! w-6! text-slate-600! dark:text-slate-200! rounded-md!" />
                 </flux:modal.trigger>
 
                 <flux:modal name="add-to-{{ $vault->id }}" class="w-90 sm:w-120!"
@@ -167,9 +166,7 @@
                 </flux:modal>
 
                 <flux:modal.trigger name="delete-{{ $vault->id }}">
-                    <flux:button variant="subtle" class="w-3! h-8!">
-                        <flux:icon.trash class="text-red-500 w-5! h-5!" />
-                    </flux:button>
+                    <flux:button variant="subtle" icon="trash" class="h-6! w-6! text-red-500! rounded-md!" />
                 </flux:modal.trigger>
 
                 <flux:modal name="delete-{{ $vault->id }}" class="w-90 sm:w-120!"

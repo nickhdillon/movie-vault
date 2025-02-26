@@ -73,3 +73,45 @@ select:focus[data-flux-control] {
 [data-flux-menu-item] {
     @apply  !cursor-pointer;
 }
+
+.shadow-inner {
+    --tw-shadow: 0px 0px 1.5px 0.5px var(--color-slate-300) inset;
+    --tw-shadow-colored: inset 0px 0px 1.5px 0.5px var(--tw-shadow-color);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+        var(--tw-ring-shadow, 0 0 #0000),
+        var(--tw-shadow);
+}
+
+.dark .shadow-inner {
+    --tw-shadow: 0px 0px 1.5px 0.5px var(--color-slate-700) inset,
+        0px 0px 1.5px 0.5px var(--color-slate-800) inset;
+    --tw-shadow-colored: inset 0px 0px 1.5px 0.5px var(--tw-shadow-color),
+        inset 0px 0px 1.5px 0.5px var(--tw-shadow-color);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+        var(--tw-ring-shadow, 0 0 #0000),
+        var(--tw-shadow);
+}
+
+.shadow-xs-with-border {
+    --tw-shadow: 0px 0px 0px 1px var(--color-slate-300),
+        0px 0px 1px 0px var(--color-slate-500),
+        0px 1px 2px 0px var(--color-slate-400);
+    --tw-shadow-colored: 0px 0px 0px 1px var(--tw-shadow-color),
+        0px 0px 1px 0px var(--tw-shadow-color),
+        0px 1px 2px 0px var(--tw-shadow-color);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+        var(--tw-ring-shadow, 0 0 #0000),
+        var(--tw-shadow);
+}
+
+.dark .shadow-xs-with-border {
+    --tw-shadow: 0px 0px 0px 1px var(--color-slate-700),
+        0px 0px 1px 0px var(--color-slate-900),
+        0px 1px 2px 0px var(--color-slate-800);
+    --tw-shadow-colored: 0px 0px 0px 1px var(--tw-shadow-color),
+        0px 0px 1px 0px var(--tw-shadow-color),
+        0px 1px 2px 0px var(--tw-shadow-color);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+        var(--tw-ring-shadow, 0 0 #0000),
+        var(--tw-shadow);
+}

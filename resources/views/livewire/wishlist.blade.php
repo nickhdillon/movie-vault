@@ -25,7 +25,7 @@
         </div>
     </div>
 
-    <div class="rounded-lg border dark:bg-slate-900 border-slate-200 dark:border-slate-700 mt-4 bg-slate-50">
+    <div class="rounded-xl bg-slate-50 dark:bg-slate-900 p-1 shadow-inner mt-4">
         <div class="flex items-center mt-4 px-4 space-x-2">
             <flux:input icon="magnifying-glass" placeholder="Search..." clearable
                 wire:model.live.debounce.300ms='search' />
@@ -33,7 +33,7 @@
             <x-filters :$ratings :$genres />
         </div>
 
-        <div class="rounded-t-lg rounded-b-lg bg-white mt-4 border-t dark:bg-slate-800/50 px-4 dark:border-slate-700 border-slate-200"
+        <div class="rounded-lg rounded-b-lg bg-white dark:bg-slate-800/50 mt-5 shadow-xs-with-border px-3.5 m-0.5"
             wire:loading.remove wire:target='search,type,selected_ratings,selected_genres,sort_direction'>
             <div class="grid grid-cols-1 gap-4 pt-4 sm:grid-cols-2 lg:grid-cols-3">
                 @forelse ($wishlist_records as $vault)
@@ -45,7 +45,7 @@
                                 alt="{{ $vault->original_title }}" />
                         </a>
 
-                        <div class="p-3 text-sm dark:bg-slate-800 rounded-b-lg space-y-1">
+                        <div class="p-3 text-sm bg-slate-50/40 dark:bg-slate-800 rounded-b-lg space-y-1">
                             <h1 class="text-lg font-semibold truncate whitespace-nowrap">
                                 {{ $vault->original_title }}
                             </h1>
@@ -100,17 +100,16 @@
                                 {{ Str::replace(',', ', ', $vault->actors) ?: 'No actors found' }}
                             </p>
 
-                            <div class="flex items-center justify-between -mb-2 w-full">
+                            <div class="flex items-center justify-between w-full">
                                 <a class="text-sm font-medium text-indigo-500 duration-200 ease-in-out hover:text-indigo-600 dark:hover:text-indigo-400"
                                     href="{{ route('details', $vault->id) }}" wire:navigate>
                                     View all details &rarr;
                                 </a>
 
-                                <div class="flex items-center !-space-x-1 -mr-2">
+                                <div class="flex items-center space-x-0.5 -mr-1.5">
                                     <flux:modal.trigger name="{{ $vault->id }}-vault">
-                                        <flux:button variant="subtle" class="w-3! h-8!">
-                                            <flux:icon.plus class="w-5! h-5! text-slate-600! dark:text-slate-200!" />
-                                        </flux:button>
+                                        <flux:button variant="subtle" icon="plus"
+                                            class="h-6! w-6! text-slate-600! dark:text-slate-200! rounded-md!" />
                                     </flux:modal.trigger>
 
                                     <flux:modal name="{{ $vault->id }}-vault" class="w-90 sm:w-120!"
@@ -149,9 +148,8 @@
                                     </flux:modal>
 
                                     <flux:modal.trigger name="{{ $vault->id }}-delete">
-                                        <flux:button variant="subtle" class="w-3! h-8!">
-                                            <flux:icon.trash class="text-red-500 w-5! h-5!" />
-                                        </flux:button>
+                                        <flux:button variant="subtle" icon="trash"
+                                            class="h-6! w-6! text-red-500! rounded-md!" />
                                     </flux:modal.trigger>
 
                                     <flux:modal name="{{ $vault->id }}-delete" class="w-90 sm:w-120!"
@@ -194,7 +192,7 @@
                     </div>
                 @empty
                     <div class="col-span-3 mx-auto text-center">
-                        <h1 class="text-lg font-semibold text-slate-500">
+                        <h1 class="text-lg font-medium text-slate-500">
                             Search movies or TV shows from the
 
                             <a class="-mr-1 font-medium text-indigo-500 duration-200 ease-in-out hover:text-indigo-600 dark:hover:text-indigo-400"
@@ -206,12 +204,12 @@
                 @endforelse
             </div>
 
-            <div class="pt-4 @if (count($wishlist_records) > 9) pb-4 @endif">
+            <div class="pt-4 @if ($wishlist_records->total() > 9) pb-4 @endif">
                 {{ $wishlist_records->links() }}
             </div>
         </div>
 
-        <div class="flex justify-center my-6" wire:loading.flex
+        <div class="flex justify-center mt-6 mb-4" wire:loading.flex
             wire:target='search,type,selected_ratings,selected_genres,sort_direction'>
             <x-large-spinner />
         </div>

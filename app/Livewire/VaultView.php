@@ -17,7 +17,7 @@ class VaultView extends Component
 {
     use WithPagination;
 
-    public $sort_by = 'id';
+    public $sort_by = 'sort';
 
     public string $search = '';
 

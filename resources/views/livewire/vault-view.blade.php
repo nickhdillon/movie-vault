@@ -227,7 +227,8 @@
             <div class="p-2">
                 <flux:table>
                     <flux:table.columns>
-                        <flux:table.column>
+                        <flux:table.column sortable :sorted="$sort_by === 'sort'" :direction="$sort_direction"
+                            wire:click="sort('sort')">
                             <flux:icon.arrows-up-down class="w-4 h-4 stroke-2" />
                         </flux:table.column>
 

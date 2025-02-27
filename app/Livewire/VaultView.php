@@ -17,7 +17,7 @@ class VaultView extends Component
 {
     use WithPagination;
 
-    public $sort_by = null;
+    public $sort_by = 'id';
 
     public string $search = '';
 
@@ -126,7 +126,6 @@ class VaultView extends Component
                     }
                 })
                 ->orderBy($this->sort_by, $this->sort_direction)
-                ->orderBy('sort')
                 ->get(),
         ]);
     }

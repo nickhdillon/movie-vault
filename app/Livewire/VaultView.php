@@ -125,7 +125,7 @@ class VaultView extends Component
                         $query->where('genres', 'LIKE', "%$genre%");
                     }
                 })
-                ->orderBy($this->sort_by, $this->sort_direction)
+                ->orderBy($this->sort_by ?? 'id', $this->sort_direction)
                 ->orderBy('sort')
                 ->get(),
         ]);

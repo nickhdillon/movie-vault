@@ -17,9 +17,7 @@ class VaultView extends Component
 {
     use WithPagination;
 
-    public string $view = 'list';
-
-    public $sort_by = 'id';
+    public $sort_by = '';
 
     public string $search = '';
 
@@ -44,6 +42,20 @@ class VaultView extends Component
     public function clearFilters(): void
     {
         $this->reset(['type', 'selected_ratings', 'selected_genres']);
+    }
+
+    public function updateVaultOrder(array $list): void
+    {
+        $this->resetPage();
+
+        collect($list)->each(function (array $item): void {
+            Vault::find($item['value'])->update(['sort' => $item['order']]);
+        });
+
+        $this->dispatch('show-toast', [
+            'status' => 'success',
+            'message' => "Items successfully sorted"
+        ]);
     }
 
     public function sort(string $column): void
@@ -114,7 +126,8 @@ class VaultView extends Component
                     }
                 })
                 ->orderBy($this->sort_by, $this->sort_direction)
-                ->paginate(9),
+                ->orderBy('sort')
+                ->get(),
         ]);
     }
 }

@@ -1,0 +1,1 @@
+import '@wotz/livewire-sortablejs';

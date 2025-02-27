@@ -298,7 +298,7 @@
                                 </flux:table.cell>
 
                                 <flux:table.cell variant="strong" class="whitespace-nowrap">
-                                    {{ $vault->genres }}
+                                    {{ Str::replace(',', ', ', $vault->genres) }}
                                 </flux:table.cell>
 
                                 <flux:table.cell variant="strong" class="whitespace-nowrap">

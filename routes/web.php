@@ -4,12 +4,11 @@ use Livewire\Volt\Volt;
 use App\Livewire\MyVault;
 use App\Livewire\Explore;
 use App\Livewire\Wishlist;
-use App\Livewire\VaultView;
 use App\Livewire\VaultDetails;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/', VaultView::class)->name('my-vault');
+    Route::get('/', MyVault::class)->name('my-vault');
 
     Route::get('explore/{query?}', Explore::class)->name('explore');
 

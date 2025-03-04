@@ -11,20 +11,21 @@
         </flux:button>
     </div>
 
-    <div class="rounded-xl bg-slate-50 dark:bg-slate-900 p-1 shadow-inner mt-4">
-        <div class="mt-4 px-4">
+    <div class="rounded-[12px] bg-slate-50 dark:bg-slate-900 p-1 shadow-inner mt-4">
+        <div class="mt-3 px-3">
             <flux:input icon="magnifying-glass" placeholder="Search..." clearable
                 wire:model.live.debounce.300ms='search' />
         </div>
 
-        <div class="rounded-lg rounded-b-lg bg-white dark:bg-slate-800/50 mt-5 shadow-xs-with-border px-3.5 m-0.5">
-            <div class="grid grid-cols-1 gap-4 py-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="px-3">
+            <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 py-3">
                 @forelse ($this->searchResults as $media)
                     @isset($media['original_language'])
                         @if ($media['original_language'] === 'en')
-                            <div class="rounded-lg shadow-xs border dark:border-slate-700 border-slate-200">
+                            <div
+                                class="rounded-[12px] bg-white dark:bg-slate-800 shadow-xs border dark:border-slate-700 border-slate-200 px-[5px] pt-[5px]">
                                 <a wire:navigate class="w-full">
-                                    <img class="h-[300px] w-full rounded-t-lg object-cover"
+                                    <img class="h-[300px] w-full rounded-[8px] object-cover border dark:border-slate-700 border-slate-200"
                                         src="{{ 'https://image.tmdb.org/t/p/w500/' . $media['poster_path'] ?? $media['backdrop_path'] . '?include_adult=false&language=en-US&page=1' }}"
                                         alt="{{ $media['original_title'] ?? $media['original_name'] }}" />
                                 </a>
@@ -100,7 +101,7 @@
                         @endif
                     @endisset
                 @empty
-                    <div class="col-span-3 mx-auto text-center">
+                    <div class="col-span-3 mt-1 mx-auto text-center">
                         <h1 class="text-lg font-medium text-slate-500" wire:loading.remove>
                             Search for movies or TV shows...
                         </h1>

@@ -22,14 +22,14 @@
     </div>
 
     <div
-        class="flex flex-col p-[5.3px] w-full mt-2 overflow-hidden bg-slate-50/50 rounded-xl sm:mt-4 md:flex-row dark:bg-slate-900/50 text-slate-800 dark:text-slate-100 shadow-inner">
+        class="flex flex-col p-[5px] w-full mt-2 overflow-hidden bg-slate-50/50 rounded-[12px] sm:mt-4 md:flex-row dark:bg-slate-900/50 text-slate-800 dark:text-slate-100 shadow-inner">
         <div class="relative w-full md:w-96 h-96 md:h-auto">
-            <img class="absolute shadow-xs-with-border rounded-lg inset-0 object-cover w-full h-full"
+            <img class="absolute rounded-[8px] inset-0 object-cover w-full h-full border dark:border-slate-700 border-slate-200"
                 src="{{ 'https://image.tmdb.org/t/p/w500/' . $vault->poster_path ?? $vault->backdrop_path . '?include_adult=false&language=en-US&page=1' }}"
                 alt="{{ $vault->title }}" />
         </div>
 
-        <div class="relative flex flex-col m-1 justify-between w-full p-4 -mb-3! space-y-3">
+        <div class="relative flex flex-col m-1 justify-between w-full p-4 -mb-2! sm:-mb-3! space-y-3">
             <p>
                 <span class="font-semibold">
                     Title:

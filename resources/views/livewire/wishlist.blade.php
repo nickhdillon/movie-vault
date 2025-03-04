@@ -18,29 +18,31 @@
                 Vault
             </flux:button>
 
-            <flux:button variant="primary" icon="plus" size="sm" href="{{ route('explore') }}" wire:navigate
+            <flux:button href="{{ route('explore') }}" variant="primary" size="sm" wire:navigate
                 class="w-full sm:w-auto">
-                Add to vault
+                <flux:icon icon="globe-alt" variant="outline" class="w-4 h-4" />
+
+                Explore
             </flux:button>
         </div>
     </div>
 
-    <div class="rounded-xl bg-slate-50 dark:bg-slate-900 p-1 shadow-inner mt-4">
-        <div class="flex items-center mt-4 px-4 space-x-2">
+    <div class="rounded-[12px] bg-slate-50 dark:bg-slate-900 p-1 shadow-inner mt-4">
+        <div class="flex items-center mt-3 px-3 space-x-2">
             <flux:input icon="magnifying-glass" placeholder="Search..." clearable
                 wire:model.live.debounce.300ms='search' />
 
             <x-filters :$ratings :$genres />
         </div>
 
-        <div class="rounded-lg rounded-b-lg bg-white dark:bg-slate-800/50 mt-5 shadow-xs-with-border px-3.5 m-0.5"
-            wire:loading.remove wire:target='search,type,selected_ratings,selected_genres,sort_direction'>
-            <div class="grid grid-cols-1 gap-4 pt-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div wire:loading.remove wire:target='search,type,selected_ratings,selected_genres,sort_direction'
+            class="px-3">
+            <div class="grid grid-cols-1 gap-3 pt-4 sm:grid-cols-2 lg:grid-cols-3">
                 @forelse ($wishlist_records as $vault)
-                    <div class="rounded-lg shadow-xs border dark:border-slate-700 border-slate-200"
+                    <div class="rounded-[12px] bg-white dark:bg-slate-800 shadow-xs px-[5px] pt-[5px] border dark:border-slate-700 border-slate-200"
                         wire:key='{{ $vault->id }}'>
                         <a href="{{ route('details', $vault->id) }}" wire:navigate class="w-full">
-                            <img class="h-[300px] w-full rounded-t-lg object-cover"
+                            <img class="h-[300px] w-full rounded-[8px] object-cover border dark:border-slate-700 border-slate-200"
                                 src="{{ 'https://image.tmdb.org/t/p/w500/' . $vault->poster_path ?? $vault->backdrop_path . '?include_adult=false&language=en-US&page=1' }}"
                                 alt="{{ $vault->original_title }}" />
                         </a>
@@ -204,12 +206,12 @@
                 @endforelse
             </div>
 
-            <div class="pt-4 @if ($wishlist_records->total() > 9) pb-4 @endif">
+            <div class="pt-3 @if ($wishlist_records->total() > 9) pb-3 @endif">
                 {{ $wishlist_records->links() }}
             </div>
         </div>
 
-        <div class="flex justify-center mt-6 mb-4" wire:loading.flex
+        <div class="flex justify-center mt-1 py-3" wire:loading.flex
             wire:target='search,type,selected_ratings,selected_genres,sort_direction'>
             <x-large-spinner />
         </div>

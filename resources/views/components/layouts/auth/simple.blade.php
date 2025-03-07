@@ -10,12 +10,12 @@
         <div class="flex w-full max-w-sm flex-col gap-2">
             <a href="{{ route('my-vault') }}" class="flex flex-col items-center gap-2 font-medium">
                 <span class="flex mb-1 items-center justify-center rounded-md">
-                    <img src="{{ asset('movie-vault-icon.png') }}" class="size-40 w-full" />
+                    <img src="{{ asset('icon.png') }}" class="w-30" />
                 </span>
                 <span class="sr-only">{{ config('app.name', 'Movie Vault') }}</span>
             </a>
 
-            <div class="flex flex-col -mt-8 gap-6">
+            <div class="flex flex-col gap-6">
                 {{ $slot }}
             </div>
         </div>

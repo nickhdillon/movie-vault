@@ -1,1 +1,1 @@
-<img src="{{ asset('movie-vault-icon.png') }}" class="size-5" />
+<img src="{{ asset('icon.svg') }}" class="size-5" />

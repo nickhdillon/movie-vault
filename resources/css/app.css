@@ -55,6 +55,12 @@
     @apply  !mb-0 !leading-tight;
 }
 
+[data-flux-select]>button,
+[data-flux-input]>input,
+[data-flux-date-picker]>button {
+    @apply h-[38px];
+}
+
 input:focus[data-flux-control],
 textarea:focus[data-flux-control],
 select:focus[data-flux-control] {
@@ -65,30 +71,24 @@ select:focus[data-flux-control] {
     @apply bg-slate-700;
 }
 
-[data-flux-button],
-[data-flux-icon],
-[data-flux-modal-close],
-[data-flux-navlist-item],
-[data-flux-profile],
-[data-flux-menu-item],
-[data-flux-tabs]>button {
-    @apply  !cursor-pointer;
-}
-
-[data-flux-tabs] {
-    @apply  !bg-slate-800/5;
-}
-
-.dark [data-flux-tabs] {
-    @apply  !bg-white/10;
-}
-
 [data-selected] {
     @apply text-slate-800;
 }
 
 .dark [data-selected] {
     @apply text-white;
+}
+
+[data-flux-radio] {
+    @apply -mt-[1px];
+}
+
+[data-flux-checkbox] {
+    @apply -mt-[1px];
+}
+
+[x-cloak] {
+    display: none !important;
 }
 
 .shadow-inner {

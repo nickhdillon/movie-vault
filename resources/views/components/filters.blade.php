@@ -90,61 +90,65 @@
                 </div>
             </div>
 
-            <div>
-                <div class="pb-0.5 text-sm font-medium flex items-center justify-between">
-                    <p>
-                        Ratings
-                    </p>
+            @if ($ratings)
+                <div>
+                    <div class="pb-0.5 text-sm font-medium flex items-center justify-between">
+                        <p>
+                            Ratings
+                        </p>
 
-                    <div class="flex items-center justify-between">
-                        <button x-cloak x-show="$wire.selected_ratings.length > 0"
-                            class="px-2 text-sm font-medium duration-200 ease-in-out rounded hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 cursor-pointer"
-                            x-on:click="$wire.set('selected_ratings', [])">
-                            Clear
-                        </button>
+                        <div class="flex items-center justify-between">
+                            <button x-cloak x-show="$wire.selected_ratings.length > 0"
+                                class="px-2 text-sm font-medium duration-200 ease-in-out rounded hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 cursor-pointer"
+                                x-on:click="$wire.set('selected_ratings', [])">
+                                Clear
+                            </button>
 
-                        <flux:button variant="subtle" icon="chevron-down"
-                            class="!h-6 !w-6 hover:!bg-slate-200 dark:hover:!bg-slate-700 !-mr-0.5  hover:text-slate-800 dark:hover:text-slate-200"
-                            x-bind:class="showRatings ? 'rotate-180' : ''" x-on:click="showRatings = !showRatings" />
+                            <flux:button variant="subtle" icon="chevron-down"
+                                class="!h-6 !w-6 hover:!bg-slate-200 dark:hover:!bg-slate-700 !-mr-0.5  hover:text-slate-800 dark:hover:text-slate-200"
+                                x-bind:class="showRatings ? 'rotate-180' : ''" x-on:click="showRatings = !showRatings" />
+                        </div>
+                    </div>
+
+                    <div x-collapse x-show="showRatings"
+                        class="pt-2 border-t space-y-2 border-slate-300 dark:border-slate-700">
+                        @foreach ($ratings as $rating)
+                            <flux:checkbox wire:model.live="selected_ratings" label="{{ $rating }}"
+                                value="{{ $rating }}" />
+                        @endforeach
                     </div>
                 </div>
+            @endif
 
-                <div x-collapse x-show="showRatings"
-                    class="pt-2 border-t space-y-2 border-slate-300 dark:border-slate-700">
-                    @foreach ($ratings as $rating)
-                        <flux:checkbox wire:model.live="selected_ratings" label="{{ $rating }}"
-                            value="{{ $rating }}" />
-                    @endforeach
-                </div>
-            </div>
+            @if ($genres)
+                <div>
+                    <div class="pb-0.5 text-sm font-medium flex items-center justify-between">
+                        <p>
+                            Genres
+                        </p>
 
-            <div>
-                <div class="pb-0.5 text-sm font-medium flex items-center justify-between">
-                    <p>
-                        Genres
-                    </p>
+                        <div class="flex items-center justify-between">
+                            <button x-cloak x-show="$wire.selected_genres.length > 0"
+                                class="px-2 text-sm font-medium duration-200 ease-in-out rounded hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 cursor-pointer"
+                                x-on:click="$wire.set('selected_genres', [])">
+                                Clear
+                            </button>
 
-                    <div class="flex items-center justify-between">
-                        <button x-cloak x-show="$wire.selected_genres.length > 0"
-                            class="px-2 text-sm font-medium duration-200 ease-in-out rounded hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 cursor-pointer"
-                            x-on:click="$wire.set('selected_genres', [])">
-                            Clear
-                        </button>
+                            <flux:button variant="subtle" icon="chevron-down"
+                                class="!h-6 !w-6 hover:!bg-slate-200 dark:hover:!bg-slate-700 !-mr-0.5  hover:text-slate-800 dark:hover:text-slate-200"
+                                x-bind:class="showGenres ? 'rotate-180' : ''" x-on:click="showGenres = !showGenres" />
+                        </div>
+                    </div>
 
-                        <flux:button variant="subtle" icon="chevron-down"
-                            class="!h-6 !w-6 hover:!bg-slate-200 dark:hover:!bg-slate-700 !-mr-0.5  hover:text-slate-800 dark:hover:text-slate-200"
-                            x-bind:class="showGenres ? 'rotate-180' : ''" x-on:click="showGenres = !showGenres" />
+                    <div x-collapse x-show="showGenres"
+                        class="pt-2 border-t space-y-2 border-slate-300 dark:border-slate-700">
+                        @foreach ($genres as $genre)
+                            <flux:checkbox wire:model.live="selected_genres" label="{{ $genre }}"
+                                value="{{ $genre }}" />
+                        @endforeach
                     </div>
                 </div>
-
-                <div x-collapse x-show="showGenres"
-                    class="pt-2 border-t space-y-2 border-slate-300 dark:border-slate-700">
-                    @foreach ($genres as $genre)
-                        <flux:checkbox wire:model.live="selected_genres" label="{{ $genre }}"
-                            value="{{ $genre }}" />
-                    @endforeach
-                </div>
-            </div>
+            @endif
         </div>
     </flux:modal>
 </div>

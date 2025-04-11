@@ -51,11 +51,23 @@ new class extends Component {
 
     <x-settings.layout heading="Profile" subheading="Update your name and email address">
         <form wire:submit="updateProfileInformation" class="my-6 w-full space-y-6">
-            <flux:input wire:model="name" label="{{ __('Name') }}" type="text" name="name" required autofocus autocomplete="name" />
+            @livewire('avatar')
 
-            <div>
-                <flux:input wire:model="email" label="{{ __('Email') }}" type="email" name="email" required autocomplete="email" />
-            </div>
+            <flux:field>
+                <flux:label>Name</flux:label>
+
+                <flux:input type="text" wire:model='name' required />
+
+                <flux:error name="name" />
+            </flux:field>
+
+            <flux:field>
+                <flux:label>Email</flux:label>
+
+                <flux:input type="email" wire:model='email' required />
+
+                <flux:error name="email" />
+            </flux:field>
 
             <div class="flex items-center gap-4">
                 <div class="flex items-center justify-end">

@@ -29,7 +29,6 @@ class Vault extends Model
         'seasons',
         'actors',
         'on_wishlist',
-        'sort'
     ];
 
     protected function casts(): array

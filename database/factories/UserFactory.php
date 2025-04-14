@@ -25,6 +25,7 @@ class UserFactory extends Factory
     {
         return [
             'name' => 'Admin',
+            'slug' => 'admin',
             'email' => 'admin@example.com',
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),

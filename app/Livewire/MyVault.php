@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Livewire;
 
 use Flux\Flux;
+use App\Models\User;
 use App\Models\Vault;
 use Livewire\Component;
 use Livewire\Attributes\On;
@@ -16,6 +17,8 @@ use Illuminate\Database\Eloquent\Builder;
 class MyVault extends Component
 {
     use WithPagination;
+
+    public ?User $user = null;
 
     public string $search = '';
 
@@ -70,13 +73,14 @@ class MyVault extends Component
 
     public function render(): View
     {
-        $this->ratings = MovieVaultService::getRatings();
+        $this->ratings = MovieVaultService::getRatings($this->user);
 
-        $this->genres = MovieVaultService::getGenres();
+        $this->genres = MovieVaultService::getGenres($this->user);
+
+        $user = $this->user ?: auth()->user();
 
         return view('livewire.my-vault', [
-            'vault_records' => auth()
-                ->user()
+            'vault_records' => $user
                 ->vaults()
                 ->whereOnWishlist(false)
                 ->when(strlen($this->search) >= 1, function (Builder $query): void {

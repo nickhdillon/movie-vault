@@ -25,6 +25,7 @@ class VaultFactory extends Factory
             'imdb_id' => 'tt0108037',
             'vault_type' => 'movie',
             'title' => 'Movie Title',
+            'slug' => 'movie-title',
             'original_title' => 'Movie Title',
             'overview' => 'Movie Overview',
             'backdrop_path' => '',

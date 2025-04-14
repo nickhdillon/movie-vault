@@ -3,13 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Vault extends Model
 {
     /** @use HasFactory<\Database\Factories\VaultFactory> */
-    use HasFactory;
+    use HasFactory, Sluggable;
 
     protected $fillable = [
         'user_id',
@@ -17,6 +18,7 @@ class Vault extends Model
         'imdb_id',
         'vault_type',
         'title',
+        'slug',
         'original_title',
         'overview',
         'backdrop_path',
@@ -35,6 +37,20 @@ class Vault extends Model
     {
         return [
             'on_wishlist' => 'bool',
+        ];
+    }
+
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
         ];
     }
 

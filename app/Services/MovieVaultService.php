@@ -5,17 +5,18 @@ declare(strict_types=1);
 namespace App\Services;
 
 use Carbon\Carbon;
+use App\Models\User;
 use Illuminate\Support\Number;
 
 class MovieVaultService
 {
-	public static function getRatings(?bool $on_wishlist = false): array
+	public static function getRatings(?User $user = null, ?bool $on_wishlist = false): array
 	{
 		$ratings = [];
 
-		auth()
-			->user()
-			->vaults()
+		$user = $user ?: auth()->user();
+
+		$user->vaults()
 			->whereOnWishlist($on_wishlist)
 			->pluck('rating')
 			->each(function (string $rating) use (&$ratings): void {
@@ -29,13 +30,13 @@ class MovieVaultService
 		return $ratings;
 	}
 
-	public static function getGenres(?bool $on_wishlist = false): array
+	public static function getGenres(?User $user = null, ?bool $on_wishlist = false): array
 	{
 		$genres = [];
 
-		auth()
-			->user()
-			->vaults()
+		$user = $user ?: auth()->user();
+
+		$user->vaults()
 			->whereOnWishlist($on_wishlist)
 			->pluck('genres')
 			->each(function (string $genre) use (&$genres): void {

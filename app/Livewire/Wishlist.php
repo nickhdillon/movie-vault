@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Livewire;
 
 use Flux\Flux;
+use App\Models\User;
 use App\Models\Vault;
 use Livewire\Component;
 use Livewire\Attributes\On;
@@ -16,6 +17,8 @@ use Illuminate\Database\Eloquent\Builder;
 class Wishlist extends Component
 {
     use WithPagination;
+
+    public ?User $user = null;
 
     public string $search = '';
 
@@ -68,13 +71,14 @@ class Wishlist extends Component
 
     public function render(): View
     {
-        $this->ratings = MovieVaultService::getRatings(on_wishlist: true);
+        $this->ratings = MovieVaultService::getRatings($this->user, true);
 
-        $this->genres = MovieVaultService::getGenres(on_wishlist: true);
+        $this->genres = MovieVaultService::getGenres($this->user, true);
+
+        $user = $this->user ?: auth()->user();
 
         return view('livewire.wishlist', [
-            'wishlist_records' => auth()
-                ->user()
+            'wishlist_records' => $user
                 ->vaults()
                 ->whereOnWishlist(true)
                 ->when(strlen($this->search) >= 1, function (Builder $query): void {

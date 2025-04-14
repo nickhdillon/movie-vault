@@ -1,12 +1,13 @@
 <?php
 
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 use Livewire\Volt\Component;
+use App\Models\User;
 
 new class extends Component {
     public string $name = '';
+    public string $slug = '';
     public string $email = '';
 
     /**
@@ -15,6 +16,7 @@ new class extends Component {
     public function mount(): void
     {
         $this->name = Auth::user()->name;
+        $this->slug = Auth::user()->slug;
         $this->email = Auth::user()->email;
     }
 
@@ -27,7 +29,7 @@ new class extends Component {
 
         $validated = $this->validate([
             'name' => ['required', 'string', 'max:255'],
-
+            'slug' => ['nullable', 'string'],
             'email' => [
                 'required',
                 'string',

@@ -237,8 +237,10 @@
                 @endforelse
             </div>
 
-            <div class="pt-3 @if ($vault_records->total() > 9) pb-3 @endif">
-                {{ $vault_records->links() }}
+            <div class="py-3">
+                <flux:pagination :paginator="$vault_records" class="hidden sm:flex border-none! pt-0!" />
+
+                <flux:pagination :paginator="$vault_records" simple class="sm:hidden border-none! pt-0!" />
             </div>
         </div>
 

@@ -3,7 +3,7 @@
 ])
 
 @if ($status)
-    <div {{ $attributes->merge(['class' => 'font-medium text-sm text-green-600']) }}>
+    <div {{ $attributes->merge(['class' => 'font-medium text-sm text-indigo-500']) }}>
         {{ $status }}
     </div>
 @endif

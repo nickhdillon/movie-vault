@@ -1,5 +1,5 @@
-@props(['title', 'description'])
+@props(['title'])
 
-<div class="flex w-full flex-col gap-2 text-center">
-    <h1 class="text-xl font-medium dark:text-slate-200">{{ $title }}</h1>
+<div class="w-full text-center">
+    <flux:heading size="xl">{{ $title }}</flux:heading>
 </div>

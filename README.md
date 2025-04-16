@@ -1,4 +1,4 @@
-# 🎬 Movie Vault
+# Movie Vault
 
 A fun and easy way to track your movie and TV show collection! Add titles to your personal vault (what you own) and keep a wishlist for future additions.
 

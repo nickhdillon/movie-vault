@@ -12,8 +12,6 @@ class Vault extends Model
     /** @use HasFactory<\Database\Factories\VaultFactory> */
     use HasFactory, Sluggable;
 
-    protected $guarded = ['id'];
-
     protected $fillable = [
         'user_id',
         'vault_id',

@@ -60,19 +60,19 @@
                             <a href="{{ route('details', $vault) }}" wire:navigate class="w-full">
                                 <img class="h-[300px] w-full rounded-[8px] object-cover border dark:border-slate-700 border-slate-200"
                                     src="{{ 'https://image.tmdb.org/t/p/w500/' . $vault->poster_path ?? $vault->backdrop_path . '?include_adult=false&language=en-US&page=1' }}"
-                                    alt="{{ $vault->original_title }}" />
+                                    alt="{{ $vault->title ?? $vault->original_title }}" />
                             </a>
                         @else
                             <div class="w-full">
                                 <img class="h-[300px] w-full rounded-[8px] object-cover border dark:border-slate-700 border-slate-200"
                                     src="{{ 'https://image.tmdb.org/t/p/w500/' . $vault->poster_path ?? $vault->backdrop_path . '?include_adult=false&language=en-US&page=1' }}"
-                                    alt="{{ $vault->original_title }}" />
+                                    alt="{{ $vault->title ?? $vault->original_title }}" />
                             </div>
                         @endif
 
                         <div class="p-3 text-sm bg-slate-50/40 dark:bg-slate-800 rounded-b-lg space-y-1">
                             <h1 class="text-lg font-semibold truncate whitespace-nowrap">
-                                {{ $vault->original_title }}
+                                {{ $vault->title ?? $vault->original_title }}
                             </h1>
 
                             <h3>

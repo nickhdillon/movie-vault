@@ -50,7 +50,7 @@ class Explore extends Component
         }
 
         $results = Http::withToken(config('services.movie-api.token'))
-            ->get("https://api.themoviedb.org/3/search/multi?query={$this->search}&include_adult=false&language=en-US")
+            ->get("https://api.themoviedb.org/3/search/multi?query={$this->search}&include_adult=false")
             ->json()['results'];
 
         $detail_requests = Http::pool(

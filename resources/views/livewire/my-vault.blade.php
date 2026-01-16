@@ -18,7 +18,7 @@
 
             @if (!$this->user) 
                 <div class="flex items-center">
-                    <flux:button icon="share" variant="ghost" size="sm" class="hover:bg-slate-100! -ml-1 dark:hover:bg-slate-700!" x-on:click="copyShareableUrl" />
+                    <flux:button icon="link" variant="ghost" size="sm" class="hover:bg-slate-100! -ml-1 dark:hover:bg-slate-700!" x-on:click="copyShareableUrl" />
 
                     <x-action-message class="ml-2 text-slate-800! dark:text-slate-200!" on="url-copied">
                         {{ __('URL copied!') }}

@@ -8,20 +8,26 @@
 <body class="h-screen bg-white dark:bg-slate-800">
     <flux:header container class="border-b border-slate-200 bg-slate-50 dark:border-slate-700 dark:bg-slate-900">
         <a href="{{ route('my-vault') }}" wire:navigate class="flex items-center space-x-2">
-            <x-app-logo class="size-8" href="#"></x-app-logo>
+            <x-app-logo class="size-8" />
         </a>
 
         <flux:spacer />
 
         @if (auth()->user())
-            <flux:dropdown position="top" align="end" class="-mr-4 sm:-mr-0 overflow-x-none!">
+            <flux:dropdown position="top" align="end" class="overflow-x-none!">
                 @if (auth()->user()->avatar)
-                    <flux:profile :name="auth()->user()->name" :initials="auth()->user()->initials()"
+                    <flux:profile
+                        :initials="auth()->user()->initials()"
                         :avatar="Storage::disk('s3')->url('avatars/' . auth()->user()->avatar)"
-                        icon-trailing="chevrons-up-down" />
+                        :chevron="false"
+                        circle
+                    />
                 @else
-                    <flux:profile :name="auth()->user()->name" :initials="auth()->user()->initials()"
-                        icon-trailing="chevrons-up-down" />
+                    <flux:profile
+                        :initials="auth()->user()->initials()"
+                        :chevron="false"
+                        circle
+                    />
                 @endif
 
                 <flux:menu class="w-[220px]">
@@ -35,7 +41,7 @@
                                             <img
                                                 src="{{ Storage::disk('s3')->url('avatars/' . auth()->user()->avatar) }}" />
                                         @else
-                                            <p>{{ auth()->user()->initials() }}</p>
+                                            <p class="text-xs">{{ auth()->user()->initials() }}</p>
                                         @endif
                                     </div>
                                 </span>

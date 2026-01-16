@@ -15,7 +15,7 @@
 
         return total;
     },
-}" class="relative z-20 w-auto h-auto">
+}" class="relative w-auto h-auto">
     <flux:modal.trigger name="filters">
         <div class="relative">
             <flux:button icon="funnel" x-on:click="slideOverOpen = true" class="dark:bg-gray-800/70! h-[38px] dark:border-white/10!" />

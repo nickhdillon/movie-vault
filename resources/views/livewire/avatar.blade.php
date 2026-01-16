@@ -1,7 +1,7 @@
 @use('Livewire\Features\SupportFileUploads\TemporaryUploadedFile', 'TemporaryUploadedFile')
 
 <div x-data="cropper" class="flex w-fit flex-col">
-    <h4 class="text-sm font-medium select-none text-slate-800 dark:text-white">
+    <h4 class="text-sm font-medium select-none text-gray-800 dark:text-white">
         Avatar
     </h4>
 
@@ -16,7 +16,7 @@
                 <img src="{{ $this->avatarUrl() }}" alt="Avatar" class="rounded-xl size-24 mt-2" id="avatar" />
             @else
                 <div
-                    class="flex items-center justify-center bg-slate-100 hover:bg-slate-200 duration-100 ease-in-out rounded-xl border dark:border-white/10 dark:bg-slate-700 dark:hover:bg-slate-600 size-24 mt-2">
+                    class="flex items-center justify-center bg-gray-100 hover:bg-gray-200 duration-100 ease-in-out rounded-xl border dark:border-white/10 dark:bg-gray-800/70 dark:hover:bg-gray-700/70 size-24 mt-2">
                     <svg wire:loading.remove wire:target="avatar" xmlns="http://www.w3.org/2000/svg"
                         fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                         class="size-6">

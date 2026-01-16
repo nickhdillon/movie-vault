@@ -1,6 +1,6 @@
 @use('App\Services\MovieVaultService', 'MovieVaultService')
 
-<div class="w-full mx-auto overflow-y-hidden max-w-7xl">
+<div class="w-full mx-auto max-w-7xl">
     <div class="flex flex-col-reverse sm:items-center justify-between gap-4 sm:flex-row">
         <flux:heading size="xl" level="1">
             {{ $vault->title }}
@@ -22,9 +22,10 @@
     </div>
 
     <div
-        class="flex flex-col p-[5px] w-full mt-2 overflow-hidden bg-slate-50/50 rounded-[12px] sm:mt-4 md:flex-row dark:bg-slate-900/50 text-slate-800 dark:text-slate-100 shadow-inner">
+        class="flex flex-col p-[5px] w-full mt-2 overflow-hidden bg-gray-50/50 rounded-[12px] sm:mt-4 md:flex-row dark:bg-gray-800/70 text-gray-800 dark:text-gray-100 shadow-inner"
+    >
         <div class="relative w-full md:w-96 h-96 md:h-auto">
-            <img class="absolute rounded-[8px] inset-0 object-cover w-full h-full border dark:border-slate-700 border-slate-200"
+            <img class="absolute rounded-[8px] inset-0 object-cover w-full h-full border dark:border-gray-700 border-gray-200"
                 src="{{ 'https://image.tmdb.org/t/p/w500/' . $vault->poster_path ?? $vault->backdrop_path . '?include_adult=false&language=en-US&page=1' }}"
                 alt="{{ $vault->title }}" />
         </div>
@@ -80,7 +81,7 @@
                 @isset($vault->imdb_id)
                     -
 
-                    <a class="text-sm font-medium text-indigo-500 duration-200 ease-in-out hover:text-indigo-600 dark:hover:text-indigo-400"
+                    <a class="text-sm font-medium text-blue-500 duration-200 ease-in-out hover:text-blue-600 dark:hover:text-blue-400"
                         href="https://www.imdb.com/title/{{ $vault->imdb_id }}/parentalguide" target="_blank">
                         <span class="inline-flex items-center">
                             View parents guide
@@ -122,7 +123,7 @@
             <div class="flex items-center sm:bottom-2 sm:-right-3 sm:p-4 sm:absolute sm:pt-0 -ml-2">
                 <flux:modal.trigger name="add-to-{{ $vault->id }}">
                     <flux:button variant="subtle" icon="plus"
-                        class="h-6! w-6! text-slate-600! dark:text-slate-200! rounded-md!" />
+                        class="h-6! w-6! text-gray-600! dark:text-gray-200! rounded-md!" />
                 </flux:modal.trigger>
 
                 <flux:modal name="add-to-{{ $vault->id }}" class="w-90 sm:w-120!"
@@ -136,7 +137,7 @@
                     <flux:subheading>
                         Are you sure you want to add
 
-                        <span class="font-semibold text-indigo-500">
+                        <span class="font-semibold text-blue-500">
                             '{{ $vault->title }}'
                         </span>
 

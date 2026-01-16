@@ -9,7 +9,7 @@
             x-transition:leave="transition ease-out duration-500" x-transition:leave-start="opacity-100 translate-x-0"
             x-transition:leave-end="opacity-0 translate-x-10">
             <div
-                class="inline-flex min-w-80 rounded-lg text-sm text-slate-800 dark:text-slate-100 bg-white dark:bg-slate-900 border dark:border-slate-700">
+                class="inline-flex min-w-80 rounded-lg text-sm text-gray-800 dark:text-gray-100 bg-white dark:bg-gray-900 border dark:border-gray-700">
                 <div class="flex p-2 w-full justify-between items-center">
                     <div class="flex items-center pl-1">
                         <svg class="w-4 h-4 shrink-0 fill-current opacity-80 mr-3" viewBox="0 0 16 16">
@@ -21,7 +21,7 @@
                                 @break
 
                                 @case('info')
-                                    <path class="fill-indigo-500"
+                                    <path class="fill-blue-500"
                                         d="M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm1 12H7V7h2v5zM8 6c-.6 0-1-.4-1-1s.4-1 1-1 1 .4 1 1-.4 1-1 1z">
                                     </path>
                                 @break
@@ -48,7 +48,7 @@
                     </div>
 
                     <flux:button icon="x-mark" variant="subtle" x-on:click="open = false"
-                        class="h-6! w-6! ml-2 rounded-md! -mr-0.5 hover:bg-slate-100! dark:hover:bg-slate-700!" />
+                        class="h-6! w-6! ml-2 rounded-md! -mr-0.5 hover:bg-gray-100! dark:hover:bg-gray-700!" />
                 </div>
             </div>
         </div>

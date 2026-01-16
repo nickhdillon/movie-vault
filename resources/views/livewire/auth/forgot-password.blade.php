@@ -38,7 +38,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
         <flux:button variant="primary" type="submit" class="w-full">{{ __('Email password reset link') }}</flux:button>
     </form>
 
-    <div class="space-x-1 text-center text-sm text-slate-400">
+    <div class="space-x-1 text-center text-sm text-gray-400">
         Or, return to
         <x-text-link href="{{ route('login') }}">log in</x-text-link>
     </div>

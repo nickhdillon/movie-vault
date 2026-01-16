@@ -11,27 +11,27 @@
 @theme {
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
-    --color-zinc-50: var(--color-slate-50);
-    --color-zinc-100: var(--color-slate-100);
-    --color-zinc-200: var(--color-slate-200);
-    --color-zinc-300: var(--color-slate-300);
-    --color-zinc-400: var(--color-slate-400);
-    --color-zinc-500: var(--color-slate-500);
-    --color-zinc-600: var(--color-slate-600);
-    --color-zinc-700: var(--color-slate-700);
-    --color-zinc-800: var(--color-slate-800);
-    --color-zinc-900: var(--color-slate-900);
-    --color-zinc-950: var(--color-slate-950);
+    --color-zinc-50: var(--color-gray-50);
+    --color-zinc-100: var(--color-gray-100);
+    --color-zinc-200: var(--color-gray-200);
+    --color-zinc-300: var(--color-gray-300);
+    --color-zinc-400: var(--color-gray-400);
+    --color-zinc-500: var(--color-gray-500);
+    --color-zinc-600: var(--color-gray-600);
+    --color-zinc-700: var(--color-gray-700);
+    --color-zinc-800: var(--color-gray-800);
+    --color-zinc-900: var(--color-gray-900);
+    --color-zinc-950: var(--color-gray-950);
 
-    --color-accent: var(--color-indigo-500);
-    --color-accent-content: var(--color-indigo-600);
+    --color-accent: var(--color-blue-500);
+    --color-accent-content: var(--color-blue-600);
     --color-accent-foreground: var(--color-white);
 }
 
 @layer theme {
     .dark {
-        --color-accent: var(--color-indigo-500);
-        --color-accent-content: var(--color-indigo-300);
+        --color-accent: var(--color-blue-600);
+        --color-accent-content: var(--color-blue-400);
         --color-accent-foreground: var(--color-white);
     }
 }
@@ -43,7 +43,7 @@
     ::before,
     ::backdrop,
     ::file-selector-button {
-        border-color: var(--color-slate-200, currentColor);
+        border-color: var(--color-gray-200, currentColor);
     }
 }
 
@@ -61,18 +61,24 @@
     @apply h-[38px];
 }
 
+.dark [data-flux-select]>button,
+.dark [data-flux-input]>input,
+.dark [data-flux-date-picker]>button {
+    @apply h-[38px] bg-gray-800/70!;
+}
+
+.dark [data-flux-menu] {
+    @apply bg-gray-800;
+}
+
 input:focus[data-flux-control],
 textarea:focus[data-flux-control],
 select:focus[data-flux-control] {
     @apply outline-hidden ring-2 ring-accent ring-offset-2 ring-offset-accent-foreground;
 }
 
-.dark [data-flux-input]>input {
-    @apply bg-slate-700;
-}
-
 [data-selected] {
-    @apply text-slate-800;
+    @apply text-gray-800;
 }
 
 .dark [data-selected] {
@@ -92,7 +98,7 @@ select:focus[data-flux-control] {
 }
 
 .shadow-inner {
-    --tw-shadow: 0px 0px 1.5px 0.5px var(--color-slate-300) inset;
+    --tw-shadow: 0px 0px 1.5px 0.5px var(--color-gray-300) inset;
     --tw-shadow-colored: inset 0px 0px 1.5px 0.5px var(--tw-shadow-color);
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
         var(--tw-ring-shadow, 0 0 #0000),
@@ -100,8 +106,8 @@ select:focus[data-flux-control] {
 }
 
 .dark .shadow-inner {
-    --tw-shadow: 0px 0px 1.5px 0.5px var(--color-slate-700) inset,
-        0px 0px 1.5px 0.5px var(--color-slate-800) inset;
+    --tw-shadow: 0px 0px 1.5px 0.5px var(--color-gray-700) inset,
+        0px 0px 1.5px 0.5px var(--color-gray-800) inset;
     --tw-shadow-colored: inset 0px 0px 1.5px 0.5px var(--tw-shadow-color),
         inset 0px 0px 1.5px 0.5px var(--tw-shadow-color);
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
@@ -110,9 +116,9 @@ select:focus[data-flux-control] {
 }
 
 .shadow-xs-with-border {
-    --tw-shadow: 0px 0px 0px 1px var(--color-slate-300),
-        0px 0px 1px 0px var(--color-slate-500),
-        0px 1px 2px 0px var(--color-slate-400);
+    --tw-shadow: 0px 0px 0px 1px var(--color-gray-300),
+        0px 0px 1px 0px var(--color-gray-500),
+        0px 1px 2px 0px var(--color-gray-400);
     --tw-shadow-colored: 0px 0px 0px 1px var(--tw-shadow-color),
         0px 0px 1px 0px var(--tw-shadow-color),
         0px 1px 2px 0px var(--tw-shadow-color);
@@ -122,9 +128,9 @@ select:focus[data-flux-control] {
 }
 
 .dark .shadow-xs-with-border {
-    --tw-shadow: 0px 0px 0px 1px var(--color-slate-700),
-        0px 0px 1px 0px var(--color-slate-900),
-        0px 1px 2px 0px var(--color-slate-800);
+    --tw-shadow: 0px 0px 0px 1px var(--color-gray-700),
+        0px 0px 1px 0px var(--color-gray-900),
+        0px 1px 2px 0px var(--color-gray-800);
     --tw-shadow-colored: 0px 0px 0px 1px var(--tw-shadow-color),
         0px 0px 1px 0px var(--tw-shadow-color),
         0px 1px 2px 0px var(--tw-shadow-color);

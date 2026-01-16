@@ -76,7 +76,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
         </div>
     </form>
 
-    <div class="space-x-1 text-center text-sm text-slate-600 dark:text-slate-400">
+    <div class="space-x-1 text-center text-sm text-gray-600 dark:text-gray-400">
         Already have an account?
         <x-text-link href="{{ route('login') }}">Log in</x-text-link>
     </div>

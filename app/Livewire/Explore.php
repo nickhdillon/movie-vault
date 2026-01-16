@@ -7,11 +7,11 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Data\VaultData;
 use Livewire\Attributes\Lazy;
-use GuzzleHttp\Promise\Promise;
 use Illuminate\Http\Client\Pool;
 use Livewire\Attributes\Computed;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Http\Client\Promises\LazyPromise;
 
 #[Lazy]
 class Explore extends Component
@@ -55,7 +55,7 @@ class Explore extends Component
 
         $detail_requests = Http::pool(
             function (Pool $pool) use ($results): void {
-                collect($results)->map(function (array $result) use ($pool): Promise {
+                collect($results)->map(function (array $result) use ($pool): LazyPromise {
                     $endpoint = $result['media_type'] === 'movie' ? 'movie' : 'tv';
 
                     $append_response = $result['media_type'] === 'movie' ? 'release_dates' : 'content_ratings';
@@ -140,7 +140,7 @@ class Explore extends Component
             $this->dispatch('show-toast', [
                 'status' => 'success',
                 'message' => "Successfully added {$media} to your {$page}. 
-                    <a href='" . route('details', $user_vaults->latest()->first()) . "' class='text-sm font-medium text-indigo-500 duration-200 ease-in-out hover:text-indigo-600 dark:hover:text-indigo-400'>View details &rarr;</a>",
+                    <a href='" . route('details', $user_vaults->latest()->first()) . "' class='text-sm font-medium text-blue-500 duration-200 ease-in-out hover:text-blue-600 dark:hover:text-blue-400'>View details &rarr;</a>",
                 'timeout' => 10000
             ]);
         }

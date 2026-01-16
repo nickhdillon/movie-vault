@@ -9,7 +9,7 @@
 <ui-disclosure {{ $attributes->class('group/disclosure') }} @if ($expanded === true) open @endif
     data-flux-navlist-group>
     <button type="button"
-        class="group/disclosure-button mb-[2px] flex h-10 w-full items-center rounded-lg text-slate-500 hover:bg-slate-800/5 hover:text-slate-800 lg:h-8 dark:text-white/80 dark:hover:bg-white/[7%] dark:hover:text-white">
+        class="group/disclosure-button mb-[2px] flex h-10 w-full items-center rounded-lg text-gray-500 hover:bg-gray-800/5 hover:text-gray-800 lg:h-8 dark:text-white/80 dark:hover:bg-white/[7%] dark:hover:text-white">
         <div class="pl-3 pr-4">
             <flux:icon.chevron-down class="hidden size-3! group-data-open/disclosure-button:block" />
             <flux:icon.chevron-right class="block size-3! group-data-open/disclosure-button:hidden" />
@@ -19,7 +19,7 @@
     </button>
 
     <div class="relative hidden space-y-[2px] pl-7 data-open:block" @if ($expanded === true) data-open @endif>
-        <div class="absolute inset-y-[3px] left-0 ml-4 w-px bg-slate-200 dark:bg-white/30"></div>
+        <div class="absolute inset-y-[3px] left-0 ml-4 w-px bg-gray-200 dark:bg-white/30"></div>
 
         {{ $slot }}
     </div>
@@ -29,7 +29,7 @@
 
 <div {{ $attributes->class('block space-y-[2px]') }}>
     <div class="px-1 py-2">
-        <div class="text-xs leading-none text-slate-400">{{ $heading }}</div>
+        <div class="text-xs leading-none text-gray-400">{{ $heading }}</div>
     </div>
 
     <div>

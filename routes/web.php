@@ -1,29 +1,26 @@
 <?php
 
-use Livewire\Volt\Volt;
-use App\Livewire\MyVault;
-use App\Livewire\Explore;
-use App\Livewire\Wishlist;
-use App\Livewire\VaultDetails;
+declare(strict_types=1);
+
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/', MyVault::class)->name('my-vault');
+    Route::livewire('/', 'pages::my-vault.index')->name('my-vault');
 
-    Route::get('explore/{query?}', Explore::class)->name('explore');
+    Route::livewire('explore/{query?}', 'pages::explore.index')->name('explore')->lazy();
 
-    Route::get('{vault:slug}/details', VaultDetails::class)->name('details');
+    Route::livewire('{vault:slug}/details', 'pages::vault-details.index')->name('details');
 
-    Route::get('wishlist', Wishlist::class)->name('wishlist');
+    Route::livewire('wishlist', 'pages::wishlist.index')->name('wishlist');
 
-    Route::redirect('settings', 'settings/profile');
+    Route::redirect('settings', 'pages::settings/profile');
 
-    Volt::route('settings/profile', 'settings.profile')->name('settings.profile');
-    Volt::route('settings/password', 'settings.password')->name('settings.password');
+    Route::livewire('settings/profile', 'pages::settings.profile')->name('settings.profile');
+    Route::livewire('settings/password', 'pages::settings.password')->name('settings.password');
 });
 
-Route::get('{user:slug}/vault', MyVault::class)->name('view-user-vault');
+Route::livewire('{user:slug}/vault', 'pages::my-vault.index')->name('view-user-vault');
 
-Route::get('{user:slug}/wishlist', Wishlist::class)->name('view-user-wishlist');
+Route::livewire('{user:slug}/wishlist', 'pages::wishlist.index')->name('view-user-wishlist');
 
 require __DIR__ . '/auth.php';

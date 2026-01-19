@@ -2,22 +2,22 @@
 
 declare(strict_types=1);
 
-use Livewire\Volt\Volt;
+use App\Livewire\Actions\Logout;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
-    Volt::route('login', 'auth.login')
+    Route::livewire('login', 'auth.login')
         ->name('login');
 
-    Volt::route('register', 'auth.register')
+    Route::livewire('register', 'auth.register')
         ->name('register');
 
-    Volt::route('forgot-password', 'auth.forgot-password')
+    Route::livewire('forgot-password', 'auth.forgot-password')
         ->name('password.request');
 
-    Volt::route('reset-password/{token}', 'auth.reset-password')
+    Route::livewire('reset-password/{token}', 'auth.reset-password')
         ->name('password.reset');
 });
 
-Route::post('logout', App\Livewire\Actions\Logout::class)
+Route::post('logout', Logout::class)
     ->name('logout');

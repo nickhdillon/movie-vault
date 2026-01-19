@@ -91,7 +91,7 @@
             </flux:navlist>
         @endif
 
-        @livewire('toast')
+        <livewire:toast.index />
     </flux:header>
 
     {{ $slot }}

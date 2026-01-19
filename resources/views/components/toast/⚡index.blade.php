@@ -1,3 +1,41 @@
+<?php
+
+declare(strict_types=1);
+
+use Livewire\Component;
+use Livewire\Attributes\On;
+use Illuminate\Contracts\View\View;
+
+new class extends Component
+{
+    public array $toasts = [];
+
+    public array $defaults = [
+        'timeout' => 5000,
+        'message' => 'Success',
+        'status' => 'success',
+    ];
+
+    public function mount(): void
+    {
+        if (session()->has('toast')) {
+            $this->toasts[] = array_merge($this->defaults, session()->get('toast'));
+        }
+    }
+
+    #[On('show-toast')]
+    public function showToast(array $toast_data): void
+    {
+        $this->toasts[] = array_merge($this->defaults, $toast_data);
+    }
+
+    public function render(): View
+    {
+        return $this->view();
+    }
+};
+?>
+
 <div class="relative">
     @foreach ($this->toasts as $toast)
         <div class="origin-top-right z-50 fixed right-0 m-5" x-cloak x-data="{ open: false }" x-show="open"

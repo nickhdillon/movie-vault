@@ -2,8 +2,6 @@
 
 declare(strict_types=1);
 
-namespace App\Livewire;
-
 use Flux\Flux;
 use App\Models\User;
 use App\Models\Vault;
@@ -14,7 +12,7 @@ use App\Services\MovieVaultService;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Builder;
 
-class MyVault extends Component
+new class extends Component
 {
     use WithPagination;
 
@@ -45,25 +43,23 @@ class MyVault extends Component
         $this->reset(['type', 'selected_ratings', 'selected_genres']);
     }
 
-    public function addToWishlist(Vault $vault): void
+    public function addToVault(Vault $vault): void
     {
-        $vault?->update(['on_wishlist' => true]);
-
-        $name = $vault->title ?? $vault->name;
+        $vault?->update(['on_wishlist' => false]);
 
         $this->dispatch('show-toast', [
             'status' => 'success',
-            'message' => "Successfully added {$name} to your wishlist"
+            'message' => "Successfully added {$vault->title} to your vault"
         ]);
 
-        Flux::modal("$vault->id-wishlist")->close();
+        Flux::modal("$vault->id-vault")->close();
     }
 
     public function delete(Vault $vault): void
     {
         $this->dispatch('show-toast', [
             'status' => 'success',
-            'message' => "Successfully removed {$vault->title} from your vault"
+            'message' => "Successfully removed {$vault->title} from your wishlist"
         ]);
 
         Flux::modal("$vault->id-delete")->close();
@@ -73,16 +69,16 @@ class MyVault extends Component
 
     public function render(): View
     {
-        $this->ratings = MovieVaultService::getRatings($this->user);
+        $this->ratings = MovieVaultService::getRatings($this->user, true);
 
-        $this->genres = MovieVaultService::getGenres($this->user);
+        $this->genres = MovieVaultService::getGenres($this->user, true);
 
         $user = $this->user ?: auth()->user();
 
-        return view('livewire.my-vault', [
-            'vault_records' => $user
+        return $this->view([
+            'wishlist_records' => $user
                 ->vaults()
-                ->whereOnWishlist(false)
+                ->whereOnWishlist(true)
                 ->when(strlen($this->search) >= 1, function (Builder $query): void {
                     $query->where(function (Builder $query): void {
                         $query->whereLike('title', "%$this->search%")
@@ -107,4 +103,4 @@ class MyVault extends Component
                 ->paginate(9),
         ]);
     }
-}
+};

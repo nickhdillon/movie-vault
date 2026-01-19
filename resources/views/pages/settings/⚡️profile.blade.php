@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
-use Livewire\Volt\Component;
+use Livewire\Component;
 use App\Models\User;
 
 new class extends Component {
@@ -53,7 +53,7 @@ new class extends Component {
 
     <x-settings.layout heading="Profile" subheading="Update your name and email address">
         <form wire:submit="updateProfileInformation" class="my-6 w-full space-y-6">
-            @livewire('avatar')
+            <livewire:avatar.index />
 
             <flux:field>
                 <flux:label>Name</flux:label>
@@ -84,6 +84,6 @@ new class extends Component {
             </div>
         </form>
 
-        <livewire:settings.delete-user-form />
+        <livewire:pages::settings.delete-user-form />
     </x-settings.layout>
 </section>

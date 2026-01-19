@@ -2,19 +2,15 @@
 
 declare(strict_types=1);
 
-namespace App\Livewire;
-
 use Livewire\Component;
 use App\Data\VaultData;
-use Livewire\Attributes\Lazy;
 use Illuminate\Http\Client\Pool;
 use Livewire\Attributes\Computed;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Client\Promises\LazyPromise;
 
-#[Lazy]
-class Explore extends Component
+new class extends Component
 {
     public string $search = '';
 
@@ -157,6 +153,6 @@ class Explore extends Component
 
     public function render(): View
     {
-        return view('livewire.explore');
+        return $this->view();
     }
-}
+};

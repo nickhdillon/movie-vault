@@ -2,15 +2,13 @@
 
 declare(strict_types=1);
 
-namespace App\Livewire;
-
 use App\Models\Vault;
 use Livewire\Component;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Livewire\Features\SupportRedirects\Redirector;
 
-class VaultDetails extends Component
+new class extends Component
 {
     public Vault $vault;
 
@@ -58,6 +56,6 @@ class VaultDetails extends Component
 
     public function render(): View
     {
-        return view('livewire.vault-details');
+        return $this->view();
     }
-}
+};

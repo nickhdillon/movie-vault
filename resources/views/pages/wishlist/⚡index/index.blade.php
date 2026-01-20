@@ -71,7 +71,7 @@
                         </div>
                     @endif
 
-                    <div class="p-3 text-sm bg-white dark:bg-transparent rounded-b-lg space-y-1">
+                    <div class="p-3 text-sm bg-gray-50/50 dark:bg-transparent rounded-b-lg space-y-1">
                         <h1 class="text-lg font-semibold truncate whitespace-nowrap">
                             {{ $vault->title ?? $vault->original_title }}
                         </h1>

@@ -1,15 +1,16 @@
 <?php
 
-use Illuminate\Auth\Events\Lockout;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Str;
-use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Auth\Events\Lockout;
 use Livewire\Attributes\Validate;
+use Livewire\Attributes\Layout;
+use Illuminate\Support\Str;
 use Livewire\Component;
 
-new class extends Component {
+new #[Layout('layouts::auth.simple')] class extends Component {
     #[Validate('required|string|email')]
     public string $email = '';
 

@@ -5,7 +5,6 @@ declare(strict_types=1);
 use App\Models\User;
 use App\Models\Vault;
 use Livewire\Livewire;
-use App\Livewire\Explore;
 use function Pest\Laravel\actingAs;
 use Illuminate\Http\Client\Request;
 use function Pest\Livewire\livewire;
@@ -101,7 +100,7 @@ it('can save new movie', function () {
             'append_to_response' => 'release_dates',
         ]);
 
-    livewire(Explore::class)
+    livewire('pages::explore.index')
         ->set('search', 'The Sandlot')
         ->call('save', [
             'backdrop_path' => '/xJHokMbljvjADYdit5fK5VQsXEG.jpg',
@@ -197,7 +196,7 @@ it('can save new tv show', function () {
             'append_to_response' => 'content_ratings',
         ]);
 
-    livewire(Explore::class)
+    livewire('pages::explore.index')
         ->set('search', 'Psych')
         ->call('save', [
             'backdrop_path' => '/xJHokMbljvjADYdit5fK5VQsXEG.jpg',
@@ -219,7 +218,7 @@ it('can save new tv show', function () {
 });
 
 it('can show popup alert when record already exists in vault', function () {
-    livewire(Explore::class)
+    livewire('pages::explore.index')
         ->call('save', [
             'id' => 1234,
             'title' => 'Test Movie',
@@ -301,12 +300,12 @@ it('can pass in and set search term', function () {
         },
     ]);
 
-    livewire(Explore::class, ['query' => 'Toy Story'])
+    livewire('pages::explore.index', ['query' => 'Toy Story'])
         ->assertSet('search', 'Toy Story')
         ->assertHasNoErrors();
 });
 
 test('component can render', function () {
-    livewire(Explore::class)
+    livewire('pages::explore.index')
         ->assertHasNoErrors();
 });

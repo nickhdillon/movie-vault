@@ -4,12 +4,13 @@ use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Str;
 use Illuminate\Validation\Rules;
+use Livewire\Attributes\Layout;
 use Livewire\Attributes\Locked;
+use Illuminate\Support\Str;
 use Livewire\Component;
 
-new class extends Component {
+new #[Layout('layouts::auth.simple')] class extends Component {
     #[Locked]
     public string $token = '';
     public string $email = '';

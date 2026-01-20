@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 use App\Models\User;
 use App\Models\Vault;
-use App\Livewire\MyVault;
 use Illuminate\Support\Str;
 use function Pest\Laravel\actingAs;
 use Illuminate\Support\Facades\URL;
@@ -19,7 +18,7 @@ beforeEach(function () {
 });
 
 it('can update search', function () {
-    livewire(MyVault::class)
+    livewire('pages::my-vault.index')
         ->set('search', 'Suits')
         ->assertHasNoErrors();
 
@@ -28,7 +27,7 @@ it('can update search', function () {
 });
 
 it('can add to wishlist', function () {
-    livewire(MyVault::class)
+    livewire('pages::my-vault.index')
         ->call('addToWishlist', Vault::first())
         ->assertHasNoErrors();
 
@@ -36,7 +35,7 @@ it('can add to wishlist', function () {
 });
 
 it('can delete a vault record', function () {
-    livewire(MyVault::class)
+    livewire('pages::my-vault.index')
         ->call('delete', Vault::first())
         ->assertHasNoErrors();
 
@@ -44,25 +43,25 @@ it('can delete a vault record', function () {
 });
 
 it('can select type', function () {
-    livewire(MyVault::class)
+    livewire('pages::my-vault.index')
         ->set('type', 'movie')
         ->assertHasNoErrors();
 });
 
 it('can select ratings', function () {
-    livewire(MyVault::class)
+    livewire('pages::my-vault.index')
         ->set('selected_ratings', ['PG'])
         ->assertHasNoErrors();
 });
 
 it('can select genres', function () {
-    livewire(MyVault::class)
+    livewire('pages::my-vault.index')
         ->set('selected_genres', ['Comedy', 'Crime'])
         ->assertHasNoErrors();
 });
 
 it('can clear filters', function () {
-    livewire(MyVault::class)
+    livewire('pages::my-vault.index')
         ->call('clearFilters')
         ->assertSet('type', '')
         ->assertSet('selected_ratings', [])
@@ -71,12 +70,12 @@ it('can clear filters', function () {
 });
 
 it('can set sort direction to desc', function () {
-    livewire(MyVault::class)
+    livewire('pages::my-vault.index')
         ->set('sort_direction', 'desc')
         ->assertHasNoErrors();
 });
 
 test('component can render', function () {
-    livewire(MyVault::class)
+    livewire('pages::my-vault.index')
         ->assertHasNoErrors();
 });

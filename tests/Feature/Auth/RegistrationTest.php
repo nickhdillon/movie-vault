@@ -2,9 +2,9 @@
 
 namespace Tests\Feature\Auth;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Livewire\Volt\Volt;
 use Tests\TestCase;
+use Livewire\Livewire;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class RegistrationTest extends TestCase
 {
@@ -19,7 +19,7 @@ class RegistrationTest extends TestCase
 
     public function test_new_users_can_register(): void
     {
-        $response = Volt::test('auth.register')
+        $response = Livewire::test('pages::auth.register')
             ->set('name', 'Test User')
             ->set('email', 'test@example.com')
             ->set('password', 'password')

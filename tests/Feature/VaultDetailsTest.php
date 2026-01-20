@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 use App\Models\User;
 use App\Models\Vault;
-use App\Livewire\VaultDetails;
 use function Pest\Laravel\actingAs;
 use function Pest\Livewire\livewire;
 
@@ -17,7 +16,7 @@ beforeEach(function () {
 });
 
 it('can add to vault', function () {
-    livewire(VaultDetails::class, ['vault' => Vault::first()])
+    livewire('pages::vault-details.index', ['vault' => Vault::first()])
         ->call('addToVault', Vault::first())
         ->assertHasNoErrors()
         ->assertRedirect(route('my-vault'));
@@ -26,7 +25,7 @@ it('can add to vault', function () {
 });
 
 it('can add to wishlist', function () {
-    livewire(VaultDetails::class, ['vault' => Vault::first()])
+    livewire('pages::vault-details.index', ['vault' => Vault::first()])
         ->call('addToWishlist', Vault::first())
         ->assertHasNoErrors()
         ->assertRedirect(route('wishlist'));
@@ -35,7 +34,7 @@ it('can add to wishlist', function () {
 });
 
 it('can delete a record', function () {
-    livewire(VaultDetails::class, ['vault' => Vault::first()])
+    livewire('pages::vault-details.index', ['vault' => Vault::first()])
         ->set('previous_url', '/my-vault')
         ->call('delete', Vault::first())
         ->assertHasNoErrors()
@@ -43,7 +42,7 @@ it('can delete a record', function () {
 });
 
 test('component can render', function () {
-    livewire(VaultDetails::class, ['vault' => Vault::first()])
+    livewire('pages::vault-details.index', ['vault' => Vault::first()])
         ->set('previous_url', '/test')
         ->assertHasNoErrors();
 });

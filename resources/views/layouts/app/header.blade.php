@@ -30,26 +30,24 @@
                     />
                 @endif
 
-                <flux:menu class="w-[220px]">
+                <flux:menu class="w-[220px] dark:border-gray-700!">
                     <flux:menu.radio.group>
-                        <div class="p-0 text-sm font-normal">
-                            <div class="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
-                                <span class="relative flex h-8 w-8 shrink-0 overflow-hidden rounded-lg">
-                                    <div
-                                        class="flex h-full w-full items-center justify-center rounded-lg bg-gray-200 text-black dark:bg-gray-800 dark:text-white">
-                                        @if (auth()->user()->avatar)
-                                            <img
-                                                src="{{ Storage::disk('s3')->url('avatars/' . auth()->user()->avatar) }}" />
-                                        @else
-                                            <p class="text-xs">{{ auth()->user()->initials() }}</p>
-                                        @endif
-                                    </div>
-                                </span>
-
-                                <div class="grid flex-1 text-left text-sm leading-tight">
-                                    <span class="truncate font-semibold">{{ auth()->user()->name }}</span>
-                                    <span class="truncate text-xs">{{ auth()->user()->email }}</span>
+                        <div class="flex items-center font-normal gap-2 px-1 py-1.5 text-left text-sm">
+                            <span class="relative flex h-8 w-8 shrink-0 overflow-hidden rounded-lg">
+                                <div
+                                    class="flex h-full w-full items-center justify-center rounded-lg bg-gray-200 text-black dark:bg-gray-800 dark:text-white">
+                                    @if (auth()->user()->avatar)
+                                        <img
+                                            src="{{ Storage::disk('s3')->url('avatars/' . auth()->user()->avatar) }}" />
+                                    @else
+                                        <p class="text-xs">{{ auth()->user()->initials() }}</p>
+                                    @endif
                                 </div>
+                            </span>
+
+                            <div class="grid flex-1 text-left text-sm leading-tight">
+                                <span class="truncate font-semibold">{{ auth()->user()->name }}</span>
+                                <span class="truncate text-xs">{{ auth()->user()->email }}</span>
                             </div>
                         </div>
                     </flux:menu.radio.group>
@@ -91,7 +89,7 @@
             </flux:navlist>
         @endif
 
-        <livewire:toast.index />
+        <livewire:toast />
     </flux:header>
 
     {{ $slot }}

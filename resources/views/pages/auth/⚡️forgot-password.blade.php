@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Password;
+use Livewire\Attributes\Layout;
 use Livewire\Component;
 
-new class extends Component {
+new #[Layout('layouts::auth.simple')] class extends Component {
     public string $email = '';
 
     /**

@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 use Livewire\Component;
 use App\Data\VaultData;
+use Livewire\Attributes\Lazy;
 use Illuminate\Http\Client\Pool;
 use Livewire\Attributes\Computed;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Client\Promises\LazyPromise;
 
-new class extends Component
+new #[Lazy] class extends Component
 {
     public string $search = '';
 

@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 use App\Models\User;
-use App\Livewire\Toast;
 use function Pest\Livewire\livewire;
 
 beforeEach(function () {
@@ -16,7 +15,7 @@ it('can show toast from session', function () {
         'message' => 'Test message'
     ]);
 
-    livewire(Toast::class)
+    livewire('toast')
         ->assertSet('toasts', [
             [
                 'status' => 'success',
@@ -28,7 +27,7 @@ it('can show toast from session', function () {
 });
 
 it('can show toast on event', function () {
-    livewire(Toast::class)
+    livewire('toast')
         ->call('showToast', [
             'status' => 'success',
             'message' => 'Test message'
@@ -37,6 +36,6 @@ it('can show toast on event', function () {
 });
 
 test('component can render', function () {
-    livewire(Toast::class)
+    livewire('toast')
         ->assertSeeLivewire('toast');
 });

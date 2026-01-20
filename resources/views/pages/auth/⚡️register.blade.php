@@ -4,10 +4,11 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use Livewire\Attributes\Layout;
 use Livewire\Component;
 use App\Models\User;
 
-new class extends Component {
+new #[Layout('layouts::auth.simple')] class extends Component {
     public string $name = '';
     public string $slug = '';
     public string $email = '';

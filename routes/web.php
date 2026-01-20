@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['auth'])->group(function () {
     Route::livewire('/', 'pages::my-vault.index')->name('my-vault');
 
-    Route::livewire('explore/{query?}', 'pages::explore.index')->name('explore')->lazy();
+    Route::livewire('explore/{query?}', 'pages::explore.index')->name('explore');
 
     Route::livewire('{vault:slug}/details', 'pages::vault-details.index')->name('details');
 

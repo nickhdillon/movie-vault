@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 use Livewire\Component;
 use Livewire\Attributes\On;
-use Illuminate\Contracts\View\View;
 
 new class extends Component
 {
@@ -28,11 +27,6 @@ new class extends Component
     {
         $this->toasts[] = array_merge($this->defaults, $toast_data);
     }
-
-    public function render(): View
-    {
-        return $this->view();
-    }
 };
 ?>
 
@@ -47,7 +41,7 @@ new class extends Component
             x-transition:leave="transition ease-out duration-500" x-transition:leave-start="opacity-100 translate-x-0"
             x-transition:leave-end="opacity-0 translate-x-10">
             <div
-                class="inline-flex min-w-80 rounded-lg text-sm text-gray-800 dark:text-gray-100 bg-white dark:bg-gray-900 border dark:border-gray-700">
+                class="inline-flex min-w-80 rounded-lg text-sm text-gray-800 dark:text-gray-100 bg-white dark:bg-gray-900 border dark:border-gray-800">
                 <div class="flex p-2 w-full justify-between items-center">
                     <div class="flex items-center pl-1">
                         <svg class="w-4 h-4 shrink-0 fill-current opacity-80 mr-3" viewBox="0 0 16 16">

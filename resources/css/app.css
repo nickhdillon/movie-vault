@@ -152,3 +152,11 @@ select:focus[data-flux-control] {
 [data-flux-avatar]>span {
     @apply text-xs!;
 }
+
+.dark [data-flux-modal]>dialog {
+    @apply bg-gray-900! ring-gray-800! shadow-2xl!;
+}
+
+[data-flux-modal]>dialog::backdrop {
+    @apply bg-gray-950/30!;
+}

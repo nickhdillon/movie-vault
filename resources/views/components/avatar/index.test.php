@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 use App\Models\User;
-use App\Livewire\Avatar;
 use Illuminate\Http\UploadedFile;
 use function Pest\Livewire\livewire;
 use Illuminate\Support\Facades\Storage;
@@ -15,7 +14,7 @@ beforeEach(function () {
 });
 
 it('can save avatar', function () {
-    livewire(Avatar::class)
+    livewire('avatar')
         ->set('avatar', UploadedFile::fake()->image('test1.jpg'))
         ->call('save', [
             'width' => 500,
@@ -28,7 +27,7 @@ it('can save avatar', function () {
 });
 
 it('can clear avatar', function () {
-    livewire(Avatar::class)
+    livewire('avatar')
         ->call('clearAvatar')
         ->assertSet('avatar', null)
         ->assertHasNoErrors()
@@ -42,7 +41,7 @@ it('can remove avatar', function () {
 
     auth()->user()->update(['avatar' => basename($file_path)]);
 
-    livewire(Avatar::class)
+    livewire('avatar')
         ->set('avatar', $file)
         ->call('removeAvatar')
         ->assertHasNoErrors()
@@ -54,6 +53,6 @@ it('can remove avatar', function () {
 });
 
 test('component can render', function () {
-    livewire(Avatar::class)
+    livewire('avatar')
         ->assertHasNoErrors();
 });

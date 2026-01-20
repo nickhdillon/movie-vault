@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 use App\Models\User;
 use App\Models\Vault;
-use App\Livewire\Wishlist;
 use Illuminate\Support\Str;
 use function Pest\Laravel\actingAs;
 use Illuminate\Support\Facades\URL;
@@ -19,7 +18,7 @@ beforeEach(function () {
 });
 
 it('can update search', function () {
-    livewire(Wishlist::class)
+    livewire('pages::wishlist.index')
         ->set('search', 'Suits')
         ->assertHasNoErrors();
 
@@ -28,14 +27,14 @@ it('can update search', function () {
 });
 
 it('can add a record to vault', function () {
-    livewire(Wishlist::class)
+    livewire('pages::wishlist.index')
         ->call('addToVault', Vault::first())
         ->assertHasNoErrors()
         ->assertNoRedirect();
 });
 
 it('can delete a wishlist record', function () {
-    livewire(Wishlist::class)
+    livewire('pages::wishlist.index')
         ->call('delete', Vault::first())
         ->assertHasNoErrors();
 
@@ -43,25 +42,25 @@ it('can delete a wishlist record', function () {
 });
 
 it('can select type', function () {
-    livewire(Wishlist::class)
+    livewire('pages::wishlist.index')
         ->set('type', 'movie')
         ->assertHasNoErrors();
 });
 
 it('can select ratings', function () {
-    livewire(Wishlist::class)
+    livewire('pages::wishlist.index')
         ->set('selected_ratings', ['PG'])
         ->assertHasNoErrors();
 });
 
 it('can select genres', function () {
-    livewire(Wishlist::class)
+    livewire('pages::wishlist.index')
         ->set('selected_genres', ['Comedy', 'Crime'])
         ->assertHasNoErrors();
 });
 
 it('can clear filters', function () {
-    livewire(Wishlist::class)
+    livewire('pages::wishlist.index')
         ->call('clearFilters')
         ->assertSet('type', '')
         ->assertSet('selected_ratings', [])
@@ -70,12 +69,12 @@ it('can clear filters', function () {
 });
 
 it('can set sort direction to desc', function () {
-    livewire(Wishlist::class)
+    livewire('pages::wishlist.index')
         ->set('sort_direction', 'desc')
         ->assertHasNoErrors();
 });
 
 test('component can render', function () {
-    livewire(Wishlist::class)
+    livewire('pages::wishlist.index')
         ->assertHasNoErrors();
 });

@@ -5,12 +5,12 @@ declare(strict_types=1);
 use Livewire\Component;
 use Spatie\Image\Image;
 use Livewire\WithFileUploads;
+use Livewire\Attributes\Defer;
 use Livewire\Attributes\Computed;
-use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
-new class extends Component
+new #[Defer] class extends Component
 {
     use WithFileUploads;
 
@@ -108,22 +108,26 @@ new class extends Component
 
         $this->redirectRoute('settings.profile', navigate: true);
     }
-
-    public function render(): View
-    {
-        return $this->view();
-    }
 };
 ?>
 
-<div x-data="cropper" class="flex w-fit flex-col">
+@placeholder
+    <div class="flex flex-col">
+        <h4 class="text-sm font-medium select-none text-gray-800 dark:text-white">
+            Avatar
+        </h4>
+
+        <flux:skeleton animate="shimmer" class="size-24 mt-2 rounded-xl!" />
+    </div>
+@endplaceholder
+
+<div class="flex w-fit flex-col">
     <h4 class="text-sm font-medium select-none text-gray-800 dark:text-white">
         Avatar
     </h4>
 
     <div class="flex items-center space-x-3">
-        <label for="avatar"
-            class="relative @if ($avatar) cursor-normal! @else cursor-pointer @endif">
+        <label for="avatar" class="relative @if ($avatar) cursor-normal! @else cursor-pointer @endif">
             @if (!$avatar)
                 <flux:input type="file" wire:model="avatar" class="sr-only!" id="avatar" />
             @endif
@@ -156,7 +160,7 @@ new class extends Component
 
     <template x-cloak x-if="$wire.avatar">
         <flux:modal wire:model.self='show_crop_avatar_modal' :dismissible="false" :closable="false">
-            <form x-on:submit.prevent='saveCroppedImage' class="space-y-6">
+            <form wire:submit.prevent="$js.saveCroppedImage" class="space-y-6">
                 <flux:heading size="lg" class="font-semibold -mt-1.5!">
                     Crop Avatar
                 </flux:heading>
@@ -185,45 +189,35 @@ new class extends Component
     <flux:error name="avatar" />
 </div>
 
-@script
-    <script>
-        Alpine.data('cropper', () => {
-            return {
-                cropper: null,
-                cropRegion: null,
+<script>
+    let cropper = null;
+    let cropRegion = null;
 
-                saveCroppedImage() {
-                    this.$wire.save(cropRegion);
-                },
+    this.$js.saveCroppedImage = () => {
+        $wire.save(cropRegion);
+    };
 
-                init () {
-                    document.addEventListener('keydown', (e) => {
-                        if (e.key === 'Escape' && this.$wire.show_crop_avatar_modal) {
-                            e.stopPropagation();
-                            e.preventDefault();
-                        }
-                    });
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && $wire.show_crop_avatar_modal) {
+            e.stopPropagation();
+            e.preventDefault();
+        }
+    });
 
-                    this.$wire.$watch('show_crop_avatar_modal', () => {                        
-                        this.$nextTick(() => {
-                            cropper = new Cropper(document.getElementById('crop-avatar'), {
-                                autoCropArea: 1,
-                                viewMode: 1,
-                                aspectRatio: 1/1,
+    $wire.$watch('show_crop_avatar_modal', () => {                     
+        cropper = new Cropper(document.getElementById('crop-avatar'), {
+            autoCropArea: 1,
+            viewMode: 1,
+            aspectRatio: 1/1,
 
-                                crop (e) {
-                                    cropRegion = {
-                                        x: e.detail.x,
-                                        y: e.detail.y,
-                                        width: e.detail.width,
-                                        height: e.detail.height,
-                                    };
-                                }
-                            });
-                        });
-                    });
-                }
-            };
+            crop (e) {
+                cropRegion = {
+                    x: e.detail.x,
+                    y: e.detail.y,
+                    width: e.detail.width,
+                    height: e.detail.height,
+                };
+            }
         });
-    </script>
-@endscript
+    });
+</script>

@@ -53,7 +53,7 @@ new class extends Component {
 
     <x-settings.layout heading="Profile" subheading="Update your name and email address">
         <form wire:submit="updateProfileInformation" class="my-6 w-full space-y-6">
-            <livewire:avatar.index />
+            <livewire:avatar />
 
             <flux:field>
                 <flux:label>Name</flux:label>
@@ -84,6 +84,6 @@ new class extends Component {
             </div>
         </form>
 
-        <livewire:pages::settings.delete-user-form />
+        <livewire:delete-user-form />
     </x-settings.layout>
 </section>

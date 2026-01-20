@@ -54,7 +54,7 @@
     <div wire:loading.remove wire:target='search,type,selected_ratings,selected_genres,sort_direction'>
         <div class="grid grid-cols-1 gap-3 pt-4 sm:grid-cols-2 lg:grid-cols-3">
             @forelse ($wishlist_records as $vault)
-                <div class="rounded-[12px] bg-white dark:bg-gray-800/70 shadow-xs px-[5px] pt-[5px] border dark:border-gray-700 border-gray-200"
+                <div class="rounded-[12px] bg-gray-50/50 dark:bg-gray-800/70 shadow-xs px-[5px] pt-[5px] border dark:border-gray-700 border-gray-200"
                     wire:key='{{ $vault->id }}'
                 >
                     @if (!$user)

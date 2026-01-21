@@ -16,7 +16,7 @@ beforeEach(function () {
 });
 
 it('can add to vault', function () {
-    livewire('pages::vault-details.index', ['vault' => Vault::first()])
+    livewire('pages::vault-details', ['vault' => Vault::first()])
         ->call('addToVault', Vault::first())
         ->assertHasNoErrors()
         ->assertRedirect(route('my-vault'));
@@ -25,7 +25,7 @@ it('can add to vault', function () {
 });
 
 it('can add to wishlist', function () {
-    livewire('pages::vault-details.index', ['vault' => Vault::first()])
+    livewire('pages::vault-details', ['vault' => Vault::first()])
         ->call('addToWishlist', Vault::first())
         ->assertHasNoErrors()
         ->assertRedirect(route('wishlist'));
@@ -34,7 +34,7 @@ it('can add to wishlist', function () {
 });
 
 it('can delete a record', function () {
-    livewire('pages::vault-details.index', ['vault' => Vault::first()])
+    livewire('pages::vault-details', ['vault' => Vault::first()])
         ->set('previous_url', '/my-vault')
         ->call('delete', Vault::first())
         ->assertHasNoErrors()
@@ -42,7 +42,7 @@ it('can delete a record', function () {
 });
 
 test('component can render', function () {
-    livewire('pages::vault-details.index', ['vault' => Vault::first()])
+    livewire('pages::vault-details', ['vault' => Vault::first()])
         ->set('previous_url', '/test')
         ->assertHasNoErrors();
 });

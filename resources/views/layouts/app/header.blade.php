@@ -63,6 +63,14 @@
                     <flux:menu.separator />
 
                     <flux:menu.radio.group>
+                        <flux:menu.item href="{{ route('friends') }}" icon="user-group" wire:navigate class="dark:data-active:bg-gray-700!">
+                            {{ __('Friends') }}
+                        </flux:menu.item>
+                    </flux:menu.radio.group>
+
+                    <flux:menu.separator />
+
+                    <flux:menu.radio.group>
                         <flux:menu.item href="/settings/profile" icon="cog" wire:navigate class="dark:data-active:bg-gray-700!">
                             {{ __('Settings') }}
                         </flux:menu.item>

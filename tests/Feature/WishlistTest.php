@@ -18,7 +18,7 @@ beforeEach(function () {
 });
 
 it('can update search', function () {
-    livewire('pages::wishlist.index')
+    livewire('pages::wishlist')
         ->set('search', 'Suits')
         ->assertHasNoErrors();
 
@@ -27,14 +27,14 @@ it('can update search', function () {
 });
 
 it('can add a record to vault', function () {
-    livewire('pages::wishlist.index')
+    livewire('pages::wishlist')
         ->call('addToVault', Vault::first())
         ->assertHasNoErrors()
         ->assertNoRedirect();
 });
 
 it('can delete a wishlist record', function () {
-    livewire('pages::wishlist.index')
+    livewire('pages::wishlist')
         ->call('delete', Vault::first())
         ->assertHasNoErrors();
 
@@ -42,25 +42,25 @@ it('can delete a wishlist record', function () {
 });
 
 it('can select type', function () {
-    livewire('pages::wishlist.index')
+    livewire('pages::wishlist')
         ->set('type', 'movie')
         ->assertHasNoErrors();
 });
 
 it('can select ratings', function () {
-    livewire('pages::wishlist.index')
+    livewire('pages::wishlist')
         ->set('selected_ratings', ['PG'])
         ->assertHasNoErrors();
 });
 
 it('can select genres', function () {
-    livewire('pages::wishlist.index')
+    livewire('pages::wishlist')
         ->set('selected_genres', ['Comedy', 'Crime'])
         ->assertHasNoErrors();
 });
 
 it('can clear filters', function () {
-    livewire('pages::wishlist.index')
+    livewire('pages::wishlist')
         ->call('clearFilters')
         ->assertSet('type', '')
         ->assertSet('selected_ratings', [])
@@ -69,12 +69,12 @@ it('can clear filters', function () {
 });
 
 it('can set sort direction to desc', function () {
-    livewire('pages::wishlist.index')
+    livewire('pages::wishlist')
         ->set('sort_direction', 'desc')
         ->assertHasNoErrors();
 });
 
 test('component can render', function () {
-    livewire('pages::wishlist.index')
+    livewire('pages::wishlist')
         ->assertHasNoErrors();
 });

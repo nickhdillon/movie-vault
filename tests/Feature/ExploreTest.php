@@ -100,7 +100,7 @@ it('can save new movie', function () {
             'append_to_response' => 'release_dates',
         ]);
 
-    livewire('pages::explore.index')
+    livewire('pages::explore')
         ->set('search', 'The Sandlot')
         ->call('save', [
             'backdrop_path' => '/xJHokMbljvjADYdit5fK5VQsXEG.jpg',
@@ -196,7 +196,7 @@ it('can save new tv show', function () {
             'append_to_response' => 'content_ratings',
         ]);
 
-    livewire('pages::explore.index')
+    livewire('pages::explore')
         ->set('search', 'Psych')
         ->call('save', [
             'backdrop_path' => '/xJHokMbljvjADYdit5fK5VQsXEG.jpg',
@@ -218,7 +218,7 @@ it('can save new tv show', function () {
 });
 
 it('can show popup alert when record already exists in vault', function () {
-    livewire('pages::explore.index')
+    livewire('pages::explore')
         ->call('save', [
             'id' => 1234,
             'title' => 'Test Movie',
@@ -300,12 +300,12 @@ it('can pass in and set search term', function () {
         },
     ]);
 
-    livewire('pages::explore.index', ['query' => 'Toy Story'])
+    livewire('pages::explore', ['query' => 'Toy Story'])
         ->assertSet('search', 'Toy Story')
         ->assertHasNoErrors();
 });
 
 test('component can render', function () {
-    livewire('pages::explore.index')
+    livewire('pages::explore')
         ->assertHasNoErrors();
 });

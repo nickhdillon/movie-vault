@@ -7,15 +7,26 @@
         </flux:heading>
 
         <div class="flex items-center w-full space-x-2 sm:w-auto sm:flex-row">
-            <flux:button variant="primary" size="sm" icon="film" href="{{ route('my-vault') }}" wire:navigate
-                class="w-full sm:w-auto">
+            <flux:button
+                variant="primary"
+                size="sm"
+                icon="film"
+                href="{{ $user ? route('view-user-vault', $user) : route('my-vault') }}"
+                wire:navigate
+                class="w-full sm:w-auto"
+            >
                 Vault
             </flux:button>
 
-            <flux:button variant="primary" size="sm" wire:navigate href="{{ route('wishlist') }}"
-                class="w-full sm:w-auto">
-                <flux:icon icon="heart" variant="outline" class="w-4 h-4" />
-
+            <flux:button
+                variant="primary"
+                icon="heart"
+                icon:variant="outline"
+                size="sm"
+                href="{{ $user ? route('view-user-wishlist', $user) : route('wishlist') }}"
+                wire:navigate
+                class="w-full sm:w-auto"
+            >
                 Wishlist
             </flux:button>
         </div>
@@ -120,95 +131,97 @@
                 {{ Str::replace(',', ', ', $vault->actors) ?: 'No actors found' }}
             </p>
 
-            <div class="flex items-center sm:bottom-2 sm:-right-3 sm:p-4 sm:absolute sm:pt-0 -ml-2">
-                <flux:modal.trigger name="add-to-{{ $vault->id }}">
-                    <flux:button variant="subtle" icon="plus"
-                        class="h-6! w-6! text-gray-600! dark:text-gray-200! rounded-md!" />
-                </flux:modal.trigger>
+            @if (!$user)
+                <div class="flex items-center sm:bottom-2 sm:-right-3 sm:p-4 sm:absolute sm:pt-0 -ml-2">
+                    <flux:modal.trigger name="add-to-{{ $vault->id }}">
+                        <flux:button variant="subtle" icon="plus"
+                            class="h-6! w-6! text-gray-600! dark:text-gray-200! rounded-md!" />
+                    </flux:modal.trigger>
 
-                <flux:modal name="add-to-{{ $vault->id }}" class="w-90 sm:w-120!"
-                    x-on:close-modal.window="$flux.modal('add-to-{{ $vault->id }}').close()">
-                    <flux:heading size="lg">
-                        Add to
+                    <flux:modal name="add-to-{{ $vault->id }}" class="w-90 sm:w-120!"
+                        x-on:close-modal.window="$flux.modal('add-to-{{ $vault->id }}').close()">
+                        <flux:heading size="lg">
+                            Add to
 
-                        {{ $vault->on_wishlist ? 'vault' : 'wishlist' }}?
-                    </flux:heading>
+                            {{ $vault->on_wishlist ? 'vault' : 'wishlist' }}?
+                        </flux:heading>
 
-                    <flux:subheading>
-                        Are you sure you want to add
+                        <flux:subheading>
+                            Are you sure you want to add
 
-                        <span class="font-semibold text-blue-500">
-                            '{{ $vault->title }}'
-                        </span>
+                            <span class="font-semibold text-blue-500">
+                                '{{ $vault->title }}'
+                            </span>
 
-                        to your
+                            to your
 
-                        {{ $vault->on_wishlist ? 'vault' : 'wishlist' }}?
-                    </flux:subheading>
+                            {{ $vault->on_wishlist ? 'vault' : 'wishlist' }}?
+                        </flux:subheading>
 
-                    <div class="flex mt-6 -mb-1">
-                        <flux:spacer />
+                        <div class="flex mt-6 -mb-1">
+                            <flux:spacer />
 
-                        <div class="space-x-1 flex items-center">
-                            <flux:modal.close>
-                                <flux:button size="sm" variant="ghost">
-                                    Cancel
-                                </flux:button>
-                            </flux:modal.close>
+                            <div class="space-x-1 flex items-center">
+                                <flux:modal.close>
+                                    <flux:button size="sm" variant="ghost">
+                                        Cancel
+                                    </flux:button>
+                                </flux:modal.close>
 
-                            <form
-                                wire:submit="{{ $vault->on_wishlist ? 'addToVault(' . $vault->id . ')' : 'addToWishlist(' . $vault->id . ')' }}">
-                                <flux:button size="sm" type="submit" variant="primary">
-                                    Confirm
-                                </flux:button>
-                            </form>
+                                <form
+                                    wire:submit="{{ $vault->on_wishlist ? 'addToVault(' . $vault->id . ')' : 'addToWishlist(' . $vault->id . ')' }}">
+                                    <flux:button size="sm" type="submit" variant="primary">
+                                        Confirm
+                                    </flux:button>
+                                </form>
+                            </div>
                         </div>
-                    </div>
-                </flux:modal>
+                    </flux:modal>
 
-                <flux:modal.trigger name="delete-{{ $vault->id }}">
-                    <flux:button variant="subtle" icon="trash" class="h-6! w-6! text-red-500! rounded-md!" />
-                </flux:modal.trigger>
+                    <flux:modal.trigger name="delete-{{ $vault->id }}">
+                        <flux:button variant="subtle" icon="trash" class="h-6! w-6! text-red-500! rounded-md!" />
+                    </flux:modal.trigger>
 
-                <flux:modal name="delete-{{ $vault->id }}" class="w-90 sm:w-120!"
-                    x-on:close-modal.window="$flux.modal('delete-{{ $vault->id }}').close()">
-                    <flux:heading size="lg">
-                        Remove from
+                    <flux:modal name="delete-{{ $vault->id }}" class="w-90 sm:w-120!"
+                        x-on:close-modal.window="$flux.modal('delete-{{ $vault->id }}').close()">
+                        <flux:heading size="lg">
+                            Remove from
 
-                        {{ $vault->on_wishlist ? 'wishlist' : 'vault' }}
-                    </flux:heading>
+                            {{ $vault->on_wishlist ? 'wishlist' : 'vault' }}
+                        </flux:heading>
 
-                    <flux:subheading>
-                        Are you sure you want to remove
+                        <flux:subheading>
+                            Are you sure you want to remove
 
-                        <span class="font-semibold text-red-500">
-                            '{{ $vault->title }}'
-                        </span>
+                            <span class="font-semibold text-red-500">
+                                '{{ $vault->title }}'
+                            </span>
 
-                        from your
+                            from your
 
-                        {{ $vault->on_wishlist ? 'wishlist' : 'vault' }}?
-                    </flux:subheading>
+                            {{ $vault->on_wishlist ? 'wishlist' : 'vault' }}?
+                        </flux:subheading>
 
-                    <div class="flex mt-6 -mb-1">
-                        <flux:spacer />
+                        <div class="flex mt-6 -mb-1">
+                            <flux:spacer />
 
-                        <div class="space-x-1 flex items-center">
-                            <flux:modal.close>
-                                <flux:button size="sm" variant="ghost">
-                                    Cancel
-                                </flux:button>
-                            </flux:modal.close>
+                            <div class="space-x-1 flex items-center">
+                                <flux:modal.close>
+                                    <flux:button size="sm" variant="ghost">
+                                        Cancel
+                                    </flux:button>
+                                </flux:modal.close>
 
-                            <form wire:submit="delete({{ $vault->id }})">
-                                <flux:button size="sm" type="submit" variant="danger">
-                                    Delete
-                                </flux:button>
-                            </form>
+                                <form wire:submit="delete({{ $vault->id }})">
+                                    <flux:button size="sm" type="submit" variant="danger">
+                                        Delete
+                                    </flux:button>
+                                </form>
+                            </div>
                         </div>
-                    </div>
-                </flux:modal>
-            </div>
+                    </flux:modal>
+                </div>
+            @endif
         </div>
     </div>
 </div>

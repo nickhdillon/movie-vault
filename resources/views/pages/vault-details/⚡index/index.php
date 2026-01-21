@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Models\User;
 use App\Models\Vault;
 use Livewire\Component;
 use Illuminate\Contracts\View\View;
@@ -10,6 +11,8 @@ use Livewire\Features\SupportRedirects\Redirector;
 
 new class extends Component
 {
+    public ?User $user = null;
+
     public Vault $vault;
 
     public ?string $previous_url = '';

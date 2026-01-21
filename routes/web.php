@@ -23,4 +23,6 @@ Route::livewire('{user:slug}/vault', 'pages::my-vault.index')->name('view-user-v
 
 Route::livewire('{user:slug}/wishlist', 'pages::wishlist.index')->name('view-user-wishlist');
 
+Route::livewire('{user:slug}/{vault:slug}/details', 'pages::vault-details.index')->name('view-user-details');
+
 require __DIR__ . '/auth.php';

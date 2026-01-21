@@ -1,11 +1,6 @@
 @use('App\Services\MovieVaultService', 'MovieVaultService')
 
-<div x-data="{
-    copyShareableUrl() {
-        navigator.clipboard.writeText('{{ route('view-user-wishlist', auth()->user()) }}');
-        $dispatch('url-copied');
-    }
-}" class="w-full mx-auto max-w-7xl">
+<div class="w-full mx-auto max-w-7xl">
     <div class="flex flex-col justify-between sm:flex-row sm:items-center">
         <div class="flex flex-row items-center space-x-1.5">
             <flux:heading size="xl" level="1">
@@ -16,8 +11,16 @@
                 (Total: {{ $wishlist_records->total() }})
             </flux:heading>
 
-            @if (!$this->user)
-                <div class="relative flex items-center">
+            @if (!$user)
+                <div
+                    x-data="{
+                        copyShareableUrl() {
+                            navigator.clipboard.writeText('{{ route('view-user-wishlist', auth()->user()) }}');
+                            $dispatch('url-copied');
+                        }
+                    }"
+                    class="relative flex items-center"
+                >
                     <flux:button icon="link" variant="ghost" size="sm" class="hover:bg-gray-100! dark:hover:bg-gray-700!" x-on:click="copyShareableUrl" />
 
                     <x-action-message class="absolute left-full ml-0.5 whitespace-nowrap text-gray-800! dark:text-gray-200!" on="url-copied">
@@ -28,14 +31,21 @@
         </div>
 
         <div class="flex items-center mt-2 space-x-2 sm:mt-0">
-            <flux:button variant="primary" icon="film" size="sm" href="{{ $user ? route('view-user-vault', $user) : route('my-vault') }}" wire:navigate
-                class="w-full sm:w-auto">
+            <flux:button
+                variant="primary"
+                icon="film"
+                size="sm"
+                href="{{ $user ? route('view-user-vault', $user) : route('my-vault') }}"
+                wire:navigate
+                class="w-full sm:w-auto"
+            >
                 Vault
             </flux:button>
 
             @if (!$user) 
                 <flux:button href="{{ route('explore') }}" variant="primary" size="sm" wire:navigate
-                    class="w-full sm:w-auto">
+                    class="w-full sm:w-auto"
+                >
                     <flux:icon icon="globe-alt" variant="outline" class="w-4 h-4" />
 
                     Explore
@@ -57,19 +67,15 @@
                 <div class="rounded-[12px] bg-gray-50/50 dark:bg-gray-800/70 shadow-xs px-[5px] pt-[5px] border dark:border-gray-700 border-gray-200"
                     wire:key='{{ $vault->id }}'
                 >
-                    @if (!$user)
-                        <a href="{{ route('details', $vault) }}" wire:navigate class="w-full">
-                            <img class="h-[300px] w-full rounded-[8px] object-cover border dark:border-gray-700 border-gray-200"
-                                src="{{ 'https://image.tmdb.org/t/p/w500/' . $vault->poster_path ?? $vault->backdrop_path . '?include_adult=false&language=en-US&page=1' }}"
-                                alt="{{ $vault->title ?? $vault->original_title }}" />
-                        </a>
-                    @else
-                        <div class="w-full">
-                            <img class="h-[300px] w-full rounded-[8px] object-cover border dark:border-gray-700 border-gray-200"
-                                src="{{ 'https://image.tmdb.org/t/p/w500/' . $vault->poster_path ?? $vault->backdrop_path . '?include_adult=false&language=en-US&page=1' }}"
-                                alt="{{ $vault->title ?? $vault->original_title }}" />
-                        </div>
-                    @endif
+                    <a
+                        href="{{ $user ? route('view-user-details', [$user, $vault]) : route('details', $vault) }}"
+                        wire:navigate
+                        class="w-full"
+                    >
+                        <img class="h-[300px] w-full rounded-[8px] object-cover border dark:border-gray-700 border-gray-200"
+                            src="{{ 'https://image.tmdb.org/t/p/w500/' . $vault->poster_path ?? $vault->backdrop_path . '?include_adult=false&language=en-US&page=1' }}"
+                            alt="{{ $vault->title ?? $vault->original_title }}" />
+                    </a>
 
                     <div class="p-3 text-sm bg-gray-50/50 dark:bg-transparent rounded-b-lg space-y-1">
                         <h1 class="text-lg font-semibold truncate whitespace-nowrap">
@@ -126,13 +132,17 @@
                             {{ Str::replace(',', ', ', $vault->actors) ?: 'No actors found' }}
                         </p>
 
-                        @if (!$user)
-                            <div class="flex items-center justify-between w-full">
-                                <a class="text-sm font-medium text-blue-500 duration-200 ease-in-out hover:text-blue-600 dark:hover:text-blue-400"
-                                    href="{{ route('details', $vault) }}" wire:navigate>
-                                    View all details &rarr;
-                                </a>
+                        
+                        <div class="flex items-center justify-between w-full">
+                            <a
+                                class="text-sm font-medium text-blue-500 duration-200 ease-in-out hover:text-blue-600 dark:hover:text-blue-400"
+                                href="{{ $user ? route('view-user-details', [$user, $vault]) : route('details', $vault) }}"
+                                wire:navigate
+                            >
+                                View all details &rarr;
+                            </a>
 
+                            @if (!$user)
                                 <div class="flex items-center space-x-0.5 -mr-1.5">
                                     <flux:modal.trigger name="{{ $vault->id }}-vault">
                                         <flux:button variant="subtle" icon="plus"
@@ -214,8 +224,8 @@
                                         </div>
                                     </flux:modal>
                                 </div>
-                            </div>
-                        @endif
+                            @endif
+                        </div>
                     </div>
                 </div>
             @empty
